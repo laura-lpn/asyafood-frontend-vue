@@ -1,0 +1,190 @@
+<template>
+    <section class="w-full h-category-img-mobile lg:h-category-img relative">
+        <img :src="recipeStore.image" :alt="recipeStore.recipe.altImage"
+            class="w-full h-full bg-center bg-cover z-[0] object-cover">
+        <div
+            class="w-full bg-filter-white flex flex-col items-center justify-end text-center px-5 md:px-16 lg:px-48 absolute h-full bottom-0">
+        </div>
+    </section>
+    <MotifTitleRecipe :text="recipeStore.recipe.name" :motif="categoryStore.motif" :alt="categoryStore.category.altMotif"
+        :color="categoryStore.category.color" />
+    <div class="w-11/12 flex justify-end my-4 md:w-3/4 mx-auto">
+        <a :href="recipeStore.print" class="text-white rounded-main text-xs px-8 py-2 flex gap-2 items-center lg:text-sm"
+            :style="[`background-color: ${categoryStore.category.color}`]" target="_blank"><font-awesome-icon
+                :icon="['fas', 'print']" />Imprimer la recette</a>
+    </div>
+    <section v-if="recipeStore.recipe.times?.length > 0"
+        class="flex items-center flex-col justify-center text-center mt-8 mb-12 m-auto w-11/12 shadow-main rounded-mobile py-4 px-2 md:w-3/4 md:px-8 xl:w-3/4">
+        <h2 class="text-lg font-medium font-second gap-4 flex items-center md:text-xl lg:text-2xl"
+            :style="[`color: ${categoryStore.category.color}`]">
+            <font-awesome-icon :icon="['fas', 'hourglass-half']" />Temps
+        </h2>
+        <div class="flex flex-col w-full lg:flex-row mt-4 justify-center gap-2 lg:gap-10">
+            <div class="flex gap-4 justify-center items-end" v-for="time in recipeStore.recipe.times">
+                <span class="font-medium text-base">{{ time.timeType.name }} :</span>
+                <p class="text-base">{{ time.value }}</p>
+            </div>
+        </div>
+    </section>
+    <section class="w-11/12 md:w-3/4 flex items-center flex-col mx-auto mb-12 relative">
+        <h2 class="text-lg font-medium font-second gap-4 flex items-center md:text-xl lg:text-2xl"
+            :style="[`color: ${categoryStore.category.color}`]">
+            <font-awesome-icon :icon="['fas', 'pepper-hot']" />Ingrédients
+        </h2>
+        <div class="gap-4 flex mt-6 h-min items-center lg:absolute lg:right-0 lg:mt-2">
+            <button @click="decrementModulo"
+                class="border-2 flex items-center justify-center border-black w-6 h-6 aspect-square rounded-[8px] hover:bg-yellow hover:text-white hover:border-yellow">
+                <font-awesome-icon :icon="['fas', 'minus']" />
+            </button>
+            <span class="font-medium text-base md:text-lg xl:text-xl">Pour {{ modulo }} {{ recipeStore.recipe.unitModulo
+            }}</span>
+            <button @click="incrementModulo"
+                class="border-2 flex items-center justify-center border-black w-6 h-6 aspect-square rounded-[8px] hover:bg-yellow hover:text-white hover:border-yellow">
+                <font-awesome-icon :icon="['fas', 'plus']" />
+            </button>
+        </div>
+        <div class="flex flex-col mt-8 gap-4 h-min md:grid md:grid-cols-2 lg:gap-x-10">
+            <div class="gap-2" v-for="ingredient in recipeStore.recipe.ingredients">
+                <p class="md:text-base xl:text-lg">{{ ingredient.quantity ? ingredient.quantity * modulo : null }} {{
+                    ingredient.unit ?
+                    ingredient.unit.name : null }}
+                    {{ ingredient.ingredient.name }}</p>
+            </div>
+        </div>
+        <button @click="addToShoppingList"
+            class="text-white rounded-main mt-10 px-8 py-2 flex gap-2 items-center lg:text-sm"
+            :style="[`background-color: ${categoryStore.category.color}`]">Ajouter à la liste de course</button>
+        <p class="mt-3 text-center" v-if="showSuccessMessage">{{ showSuccessMessage }}</p>
+        <div v-if="showMessageLogin"
+            class="text-yellow font-bold py-2 px-4 mt-3 text-center w-4/5 m-auto md:w-3/5 lg:w-1/2">
+            <p>{{ showMessageLogin }}</p>
+            <button @click="redirectToLogin" class="text-red">Se connecter</button>
+        </div>
+    </section>
+    <section v-if="recipeStore.recipe.steps?.length > 0" :style="[`background-color: ${categoryStore.category.color}`]"
+        class="mb-12 flex flex-col items-center py-8 text-white">
+        <h2 class="text-lg font-medium font-second gap-4 flex items-center md:text-xl lg:text-2xl">
+            <font-awesome-icon :icon="['fas', 'utensils']" />Préparation
+        </h2>
+        <div class="w-11/12 md:w-3/4 mx-auto my-8 flex flex-col gap-8 justify-center text-center">
+            <div v-for="etape in sortedSteps">
+                <span class="font-medium text-base md:text-lg">Étape {{ etape.sequence }}</span>
+                <div class="mt-3 md:text-base" v-html="etape.description"></div>
+            </div>
+        </div>
+    </section>
+    <section v-if="recipeStore.recipe.info" class="w-11/12 md:w-3/4 flex items-center flex-col mx-auto">
+        <h2 class="text-lg font-medium font-second gap-4 flex items-center md:text-xl lg:text-2xl"
+            :style="[`color: ${categoryStore.category.color}`]">
+            <font-awesome-icon :icon="['fas', 'info']" />Information
+        </h2>
+        <div class="py-8 text-center md:text-base" v-html="recipeStore.recipe.info"></div>
+    </section>
+</template>
+
+<script>
+import { useRouter } from 'vue-router';
+import { useCategoryStore } from '../store/CategoryStore.js';
+import { useRecipeStore } from '../store/RecipeStore.js';
+import { ref } from 'vue'
+
+export default {
+    name: 'RecipeView',
+
+    data() {
+        return {
+            showSuccessMessage: '',
+            showMessageLogin: ''
+        };
+    },
+    methods: {
+        redirectToLogin() {
+            const currentRoute = this.$route.fullPath;
+            this.$router.push({ name: 'login', query: { next: currentRoute } });
+        },
+        async addToShoppingList() {
+
+            const ingredients = this.recipeStore.recipe.ingredients;
+            const shoppingListData = ingredients.map(ingredient => ({
+                name: ingredient.ingredient.name,
+                quantity: ingredient.quantity ? ingredient.quantity * this.modulo : 0,
+                unit: ingredient.unit ? ingredient.unit.name : null,
+            }));
+
+            try {
+                const response = await fetch('/api/list/add', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ ingredients: shoppingListData })
+                });
+
+                if (response.status === 401) {
+                    this.showMessageLogin = 'Vous devez être connecté pour ajouter des ingrédients à votre liste de course.';
+                }
+                if (response.ok) {
+                    this.showSuccessMessage = 'Les ingrédients ont été ajoutés à votre liste de course.';
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    },
+    computed: {
+        modulo() {
+
+            if (this.recipeStore.recipe.unitModulo === 'personnes') {
+                this.modulo.value = 4;
+            }
+            const calculatedModulo = this.recipeStore.recipe.modulo * this.modulo;
+            return calculatedModulo;
+        },
+        sortedSteps() {
+            if (this.recipeStore.recipe && this.recipeStore.recipe.steps) {
+                return this.recipeStore.recipe.steps.sort((a, b) => a.sequence - b.sequence);
+            }
+            return [];
+        },
+    },
+    setup() {
+        const recipeStore = useRecipeStore();
+        const categoryStore = useCategoryStore();
+
+        const getRecipe = async (slug) => {
+            await recipeStore.getRecipe(slug);
+        };
+        const getCategory = async (slug) => {
+            await categoryStore.getCategory(slug);
+        };
+        const modulo = ref(1);
+        const incrementModulo = () => {
+            modulo.value++;
+        };
+
+        const decrementModulo = () => {
+            if (modulo.value > 1) {
+                modulo.value--;
+            }
+        };
+        return {
+            recipeStore,
+            getRecipe,
+            categoryStore,
+            getCategory,
+            modulo,
+            incrementModulo,
+            decrementModulo,
+        };
+
+    },
+    async created() {
+        const router = useRouter();
+        const slug = router.currentRoute.value.params.slug;
+        const category = router.currentRoute.value.params.category;
+        await this.getRecipe(slug);
+        await this.getCategory(category);
+    }
+};
+
+</script>
