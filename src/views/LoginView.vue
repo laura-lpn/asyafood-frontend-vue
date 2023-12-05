@@ -45,7 +45,7 @@ export default {
     }
   },
   setup() {
-    const token = fetch('api/check-token')
+    const token = fetch('https://admin.asyafood.fr/api/check-token')
     if (token.ok) {
       this.$router.push({ name: 'account' })
     }
@@ -63,7 +63,7 @@ export default {
       this.isLoading = true
       this.error = ''
 
-      const response = await fetch('api/login', {
+      const response = await fetch('https://admin.asyafood.fr/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

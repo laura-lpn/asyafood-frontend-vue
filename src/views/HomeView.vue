@@ -59,12 +59,12 @@ export default {
     },
     methods: {
         async getRecentRecipes() {
-            const response = await fetch('/api/recipes?limit=3&orderBy=id&order=desc');
+            const response = await fetch('https://admin.asyafood.fr/api/recipes?limit=3&orderBy=id&order=desc');
             const recentRecipes = await response.json();
             this.recentRecipes = recentRecipes;
         },
         async getCategories() {
-            const response = await fetch('/api/categories');
+            const response = await fetch('https://admin.asyafood.fr/api/categories');
             const categories = await response.json();
             this.categories = categories;
         }
