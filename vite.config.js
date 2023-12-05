@@ -19,13 +19,5 @@ export default defineConfig({
     watch: {
         usePolling: true
     },
-    proxy: {
-      '/api': {
-        target: 'https://admin.asyafood.fr/api',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
-        secure: false, // Ignorer les erreurs de certificat
-      }
-    },
   }
 })
