@@ -29,9 +29,7 @@
     <p>Le Directeur de la publication du Site est Laura Lepannetier.</p>
     <h2 class="text-lg font-semibold my-4">Nous contacter</h2>
     <p class="md:text-base mx-4 md:mx-8 my-2">
-      Par téléphone : +33782725055<br />
       Par email : contact@asyafood.fr<br />
-      Par courrier : 9 rue Pierre Loti 31500 Toulouse<br />
     </p>
     <h2 class="text-lg font-semibold my-4">Données personnelles</h2>
     <p class="md:text-base mx-4 md:mx-8 my-2">
