@@ -21,7 +21,7 @@ export default defineConfig({
     },
     proxy: {
       '/api': {
-        target: 'https://backend.asyafood.fr/api',
+        target: 'https://master-7rqtwti-isda55xcmtcww.fr-4.platformsh.site/api',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
         secure: false, // Ignorer les erreurs de certificat
