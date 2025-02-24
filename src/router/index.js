@@ -135,9 +135,9 @@ router.beforeEach(async (to, from) => {
     try {
       let response
       if (to.name === 'category') {
-        response = await fetch(`/api/category/${to.params.slug}`)
+        response = await fetch(`https://master-7rqtwti-isda55xcmtcww.fr-4.platformsh.site/api/category/${to.params.slug}`)
       } else {
-        response = await fetch(`/api/recipe/${to.params.slug}`)
+        response = await fetch(`https://master-7rqtwti-isda55xcmtcww.fr-4.platformsh.site/api/recipe/${to.params.slug}`)
       }
 
       if (!response.ok) {
