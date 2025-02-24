@@ -123,7 +123,7 @@ export default {
     },
     async updateEmail() {
       try {
-        const response = await fetch('/api/profil/edit-email', {
+        const response = await fetch('https://master-7rqtwti-isda55xcmtcww.fr-4.platformsh.site/api/profil/edit-email', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -145,7 +145,7 @@ export default {
     },
     async updateUsername() {
       try {
-        const response = await fetch('/api/profil/edit-username', {
+        const response = await fetch('https://master-7rqtwti-isda55xcmtcww.fr-4.platformsh.site/api/profil/edit-username', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -172,7 +172,7 @@ export default {
       }
 
       try {
-        const response = await fetch('/api/profil/edit-password', {
+        const response = await fetch('https://master-7rqtwti-isda55xcmtcww.fr-4.platformsh.site/api/profil/edit-password', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -200,7 +200,7 @@ export default {
     },
     async confirmAccountDeletion() {
       try {
-        const response = await fetch('/api/profil/delete', {
+        const response = await fetch('https://master-7rqtwti-isda55xcmtcww.fr-4.platformsh.site/api/profil/delete', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

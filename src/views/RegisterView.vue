@@ -103,7 +103,7 @@ export default {
         this.error = 'Please enter a username.'
         return
       }
-      const response = await fetch('/api/register', {
+      const response = await fetch('https://master-7rqtwti-isda55xcmtcww.fr-4.platformsh.site/api/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
