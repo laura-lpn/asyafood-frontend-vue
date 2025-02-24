@@ -44,7 +44,7 @@ export default {
       formData.append('email', this.email);
 
       try {
-        const response = await fetch('https://admin.asyafood.fr/api/forgot-password', {
+        const response = await fetch('https://127.0.0.1:8000/api/forgot-password', {
           method: 'POST',
           body: formData
         });

@@ -135,9 +135,9 @@ router.beforeEach(async (to, from) => {
     try {
       let response
       if (to.name === 'category') {
-        response = await fetch(`https://admin.asyafood.fr/api/category/${to.params.slug}`)
+        response = await fetch(`https://127.0.0.1:8000/api/category/${to.params.slug}`)
       } else {
-        response = await fetch(`https://admin.asyafood.fr/api/recipe/${to.params.slug}`)
+        response = await fetch(`https://127.0.0.1:8000/api/recipe/${to.params.slug}`)
       }
 
       if (!response.ok) {

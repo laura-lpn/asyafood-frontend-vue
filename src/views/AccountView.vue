@@ -123,7 +123,7 @@ export default {
     },
     async updateEmail() {
       try {
-        const response = await fetch('https://admin.asyafood.fr/api/profil/edit-email', {
+        const response = await fetch('https://127.0.0.1:8000/api/profil/edit-email', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -145,7 +145,7 @@ export default {
     },
     async updateUsername() {
       try {
-        const response = await fetch('https://admin.asyafood.fr/api/profil/edit-username', {
+        const response = await fetch('https://127.0.0.1:8000/api/profil/edit-username', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -172,7 +172,7 @@ export default {
       }
 
       try {
-        const response = await fetch('https://admin.asyafood.fr/api/profil/edit-password', {
+        const response = await fetch('https://127.0.0.1:8000/api/profil/edit-password', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -193,14 +193,14 @@ export default {
       }
     },
     async logout() {
-      const response = await fetch(`https://admin.asyafood.fr/api/logout`)
+      const response = await fetch(`https://127.0.0.1:8000/api/logout`)
       if (response.ok) {
         this.$router.push({ name: 'login' })
       }
     },
     async confirmAccountDeletion() {
       try {
-        const response = await fetch('https://admin.asyafood.fr/api/profil/delete', {
+        const response = await fetch('https://127.0.0.1:8000/api/profil/delete', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -221,7 +221,7 @@ export default {
     }
   },
   async mounted() {
-    const response = await fetch(`https://admin.asyafood.fr/api/profil`)
+    const response = await fetch(`https://127.0.0.1:8000/api/profil`)
     if (response.ok) {
       const user = await response.json()
       this.user = user

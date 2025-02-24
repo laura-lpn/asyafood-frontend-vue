@@ -44,7 +44,7 @@ export default {
     methods: {
         async toggleValidation(item) {
             try {
-                const response = await fetch(`https://admin.asyafood.fr/api/list/validate/${item.id}`, {
+                const response = await fetch(`https://127.0.0.1:8000/api/list/validate/${item.id}`, {
                     method: 'POST'
                 });
                 if (response.ok) {
@@ -57,7 +57,7 @@ export default {
         },
         async clearList() {
             try {
-                const response = await fetch(`https://admin.asyafood.fr/api/list/clear`, {
+                const response = await fetch(`https://127.0.0.1:8000/api/list/clear`, {
                     method: 'POST'
                 });
 
@@ -73,7 +73,7 @@ export default {
         }
     },
     async mounted() {
-        const response = await fetch(`https://admin.asyafood.fr/api/list`);
+        const response = await fetch(`https://127.0.0.1:8000/api/list`);
         if(response.ok) {
             this.list = await response.json();
         }

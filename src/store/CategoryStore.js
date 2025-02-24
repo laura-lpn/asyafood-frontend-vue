@@ -13,18 +13,18 @@ export const useCategoryStore = defineStore({
       const router = useRouter()
 
       try {
-        const response = await fetch(`https://admin.asyafood.fr/api/category/${slug}`)
+        const response = await fetch(`https://127.0.0.1:8000/api/category/${slug}`)
         if (response.status === 404) {
           router.push({ name: 'notFound', params: {catchAll: '404'} })
         } else {
           const category = await response.json()
           this.category = category
 
-          const responseBlob = await fetch(`https://admin.asyafood.fr/api/category/image/${slug}`)
+          const responseBlob = await fetch(`https://127.0.0.1:8000/api/category/image/${slug}`)
           const blob = await responseBlob.blob()
           this.image = URL.createObjectURL(blob)
 
-          const responseMotif = await fetch(`https://admin.asyafood.fr/api/category/motif/${slug}`)
+          const responseMotif = await fetch(`https://127.0.0.1:8000/api/category/motif/${slug}`)
           const blobMotif = await responseMotif.blob()
           this.motif = URL.createObjectURL(blobMotif)
         }

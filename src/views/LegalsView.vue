@@ -155,7 +155,7 @@ export default {
   },
   methods: {
     async getCategories() {
-      const response = await fetch('https://admin.asyafood.fr/api/categories')
+      const response = await fetch('https://127.0.0.1:8000/api/categories')
       const categories = await response.json()
       this.categories = categories
     }
