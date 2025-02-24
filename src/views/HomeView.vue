@@ -59,12 +59,12 @@ export default {
     },
     methods: {
         async getRecentRecipes() {
-            const response = await fetch('https://127.0.0.1:8000/api/recipes?limit=3&orderBy=id&order=desc');
+            const response = await fetch('/api/recipes?limit=3&orderBy=id&order=desc');
             const recentRecipes = await response.json();
             this.recentRecipes = recentRecipes;
         },
         async getCategories() {
-            const response = await fetch('https://127.0.0.1:8000/api/categories');
+            const response = await fetch('/api/categories');
             const categories = await response.json();
             this.categories = categories;
         }
