@@ -26,7 +26,7 @@
       Site Web : asyafood.fr<br />
     </p>
     <h2 class="text-lg font-semibold my-4">Directeur de publication</h2>
-    <p>Le Directeur de la publication du Site est Laura Lepannetier.</p>
+    <p class="md:text-base mx-4 md:mx-8 my-2">Le Directeur de la publication du Site est Laura Lepannetier.</p>
     <h2 class="text-lg font-semibold my-4">Nous contacter</h2>
     <p class="md:text-base mx-4 md:mx-8 my-2">
       Par email : contact@asyafood.fr<br />
@@ -53,7 +53,7 @@
         >Unsplash</a
       >
       (accueil)<br />
-      <template v-for="category in categories">
+      <template v-for="category in categories" :key="category.id">
         <p v-html="category.copyright"></p>
       </template>
       <a
