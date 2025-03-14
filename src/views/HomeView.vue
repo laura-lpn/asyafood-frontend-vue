@@ -31,7 +31,7 @@
     <section class="w-full">
         <MotifTitleSection text="Nos recettes par pays" color="red" />
         <div class="grid grid-cols-2 w-11/12 mx-auto gap-5 md:grid-cols-3 md:gap-8 lg:grid-cols-6 lg:gap-0 lg:w-full lg:h-[65vh]">
-            <CategoryCard v-for="category in categories" :category="category.slug" :key="category.id" :name="category.name" :image="category.image" :altImage="category.altImage"/>
+            <CategoryCard v-for="category in categoriesWithRecipe" :category="category.slug" :key="category.id" :name="category.name" :image="category.image" :altImage="category.altImage"/>
         </div>
     </section>
 </template>
@@ -55,6 +55,11 @@ export default {
             ScrollJSON,
             categories: [],
             recentRecipes: [],
+        }
+    },
+    computed: {
+        categoriesWithRecipe() {
+            return this.categories.filter(category => category.recipes.length > 0);
         }
     },
     methods: {

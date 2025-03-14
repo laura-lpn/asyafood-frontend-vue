@@ -28,7 +28,7 @@
           <font-awesome-icon v-else :icon="['fas', 'xmark']" />
         </button>
         <ul id="mobile-menu" :class="{ 'hidden max-h-0': !mobileMenuOpen, 'flex flex-col gap-4 pb-2 mt-2 max-h-max overflow-hidden transition-all duration-300' : mobileMenuOpen}">
-          <li v-for="category in categories" class="text-black font-medium">
+          <li v-for="category in categoriesWithRecipe" class="text-black font-medium" :key="category.id">
             <Navlink :text="category.name" :slug="category.slug"/>
           </li>
         </ul>
@@ -37,7 +37,7 @@
     <nav
     class=" 
     gap-6 items-center justify-between w-full text-black font-second font-medium text-base hidden lg:flex">
-      <Navlink v-for="category in categories" :text="category.name" :slug="category.slug"/>
+      <Navlink v-for="category in categoriesWithRecipe" :text="category.name" :slug="category.slug" :key="category.id"/>
     </nav>
   </header>
 
@@ -55,6 +55,11 @@ export default {
     return {
         categories: [],
         mobileMenuOpen: false
+    }
+  },
+  computed: {
+    categoriesWithRecipe() {
+      return this.categories.filter(category => category.recipes.length > 0);
     }
   },
   methods: {
