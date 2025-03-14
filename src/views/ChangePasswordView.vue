@@ -65,7 +65,7 @@ export default {
   async beforeMount() {
     const token = this.$route.params.token
     try {
-      const response = await fetch(`/api/reset/${token}`)
+      const response = await fetch(`https://master-7rqtwti-isda55xcmtcww.fr-4.platformsh.site/api/reset/${token}`)
       if (response.status === 404) {
         this.$router.push({ name: 'notFound', params: {catchAll: '404'} })
       }
@@ -82,7 +82,7 @@ export default {
       this.isLoading = true
       this.successMessage = ''
       try {
-        const response = await fetch(`/api/change-password/${token}`, {
+        const response = await fetch(`https://master-7rqtwti-isda55xcmtcww.fr-4.platformsh.site/api/change-password/${token}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

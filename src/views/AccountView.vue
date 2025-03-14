@@ -193,7 +193,7 @@ export default {
       }
     },
     async logout() {
-      const response = await fetch(`/api/logout`)
+      const response = await fetch('https://master-7rqtwti-isda55xcmtcww.fr-4.platformsh.site/api/logout')
       if (response.ok) {
         this.$router.push({ name: 'login' })
       }
@@ -220,8 +220,12 @@ export default {
       }
     }
   },
-  async mounted() {
-    const response = await fetch(`/api/profil`)
+  async beforeMount() {
+    const token = fetch('https://master-7rqtwti-isda55xcmtcww.fr-4.platformsh.site/api/check-token')
+    if (!token.ok) {
+      this.$router.push({ name: 'login' })
+    }
+    const response = await fetch('https://master-7rqtwti-isda55xcmtcww.fr-4.platformsh.site/api/profil')
     if (response.ok) {
       const user = await response.json()
       this.user = user
