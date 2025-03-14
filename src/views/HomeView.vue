@@ -22,7 +22,7 @@
         <MotifTitleSection text="Ajout récent" color="yellow" />
          <div class="flex overflow-x-scroll snap-x-mandatory w-screen mx-auto md:overflow-auto z-10 p-5 md:p-0">
             <div class="flex snap-start justify-center gap-10 md:w-11/12 lg:w-4/5 mx-auto xl:w-[65%] xl:gap-24">
-                <RecipeCard class="w-[60vw] h-auto md:w-auto" v-for="recentRecipe in recentRecipes" :key="recentRecipe.id" :recipe="recentRecipe.slug"
+                <RecipeCardHome class="w-[60vw] h-auto md:w-auto" v-for="recentRecipe in recentRecipes" :key="recentRecipe.id" :recipe="recentRecipe.slug"
                     :category="recentRecipe.category.slug" :image="recentRecipe.image" :altImage="recentRecipe.altImage" :name="recentRecipe.name" />
             </div>
         </div>
@@ -42,12 +42,12 @@ import 'vue3-lottie/dist/style.css';
 
 import ScrollJSON from '../assets/json/scroll.json';
 import CategoryCard from '../components/CategoryCard.vue';
-import RecipeCard from '../components/RecipeCard.vue';
+import RecipeCardHome from '../components/RecipeCardHome.vue';
 
 export default {
     components: {
     Vue3Lottie,
-    RecipeCard,
+    RecipeCardHome,
     CategoryCard
 },
     data() {

@@ -15,6 +15,7 @@ import MotifTitleCategory from './components/section/MotifTitleCategory.vue'
 import Pagination from './components/Pagination.vue'
 import RecipeCard from './components/RecipeCard.vue'
 import CategoryCard from './components/CategoryCard.vue'
+import RecipeCardHome from './components/RecipeCardHome.vue'
 
 import './assets/main.css'
 
@@ -74,6 +75,7 @@ const app = createApp(App)
   .component('Pagination', Pagination)
   .component('RecipeCard', RecipeCard)
   .component('CategoryCard', CategoryCard)
+  .component('RecipeCardHome', RecipeCardHome)
 
 app.use(router)
 app.use(pinia)

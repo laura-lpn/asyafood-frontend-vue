@@ -64,7 +64,7 @@ module.exports = {
       height: {
         'section-img': '90vh',
         'section-img-xl': '75vh',
-        'section-img-mobile': '80vh',
+        'section-img-mobile': '90vh',
         'category-img' : '65vh',
         'category-img-mobile' : '50vh',
       },

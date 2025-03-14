@@ -23,7 +23,7 @@
         <div class="w-2/3 grid grid-cols-2 gap-y-2 md:w-auto md:flex md:gap-6">
           <label v-for="type in recipeTypes" :key="type" class="flex items-center gap-2 justify-start">
             <input type="checkbox" :value="type" v-model="selectedFilters.types"
-              class="w-4 h-4 accent-yellow cursor-pointer" />
+              class="w-4 h-4 accent-yellow cursor-pointer bg-white" />
             {{ type }}
           </label>
         </div>
@@ -42,7 +42,7 @@
     </div>
   </section>
   <section id="recettes"
-    class="w-11/12 mx-auto my-12 grid grid-cols-2 md:grid-cols-3 md:w-4/5 gap-10 md:gap-26 xl:gap-y-20 xl:gap-32">
+    class="w-11/12 mx-auto my-12 grid grid-cols-2 md:grid-cols-3 md:w-4/5 gap-6 md:gap-26 xl:gap-y-20 xl:gap-32">
     <template v-if="paginatedRecipes.length > 0">
       <RecipeCard
         v-for="recipe in paginatedRecipes"
