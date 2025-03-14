@@ -21,9 +21,9 @@
         <img src="/motif-bg1.svg" alt="motif Asya Food jaune" class="absolute hidden lg:block z-0 -left-28 top-0">
         <MotifTitleSection text="Ajout récent" color="yellow" />
          <div class="flex overflow-x-scroll snap-x-mandatory w-screen mx-auto md:overflow-auto z-10 p-5 md:p-0">
-            <div class="flex snap-start gap-10 md:w-11/12 lg:w-4/5 mx-auto xl:w-[65%] xl:gap-24">
+            <div class="flex snap-start justify-center gap-10 md:w-11/12 lg:w-4/5 mx-auto xl:w-[65%] xl:gap-24">
                 <RecipeCard class="w-[60vw] h-auto md:w-auto" v-for="recentRecipe in recentRecipes" :key="recentRecipe.id" :recipe="recentRecipe.slug"
-                    :category="recentRecipe.category.slug" />
+                    :category="recentRecipe.category.slug" :image="recentRecipe.image" :altImage="recentRecipe.altImage" :name="recentRecipe.name" />
             </div>
         </div>
         <img src="/motif-bg2.svg" alt="motif Asya Food rouge" class="absolute hidden lg:block z-0 -right-28 bottom-0">
@@ -31,7 +31,7 @@
     <section class="w-full">
         <MotifTitleSection text="Nos recettes par pays" color="red" />
         <div class="grid grid-cols-2 w-11/12 mx-auto gap-5 md:grid-cols-3 md:gap-8 lg:grid-cols-6 lg:gap-0 lg:w-full lg:h-[65vh]">
-            <CategoryCard v-for="category in categories" :category="category.slug" :key="category.id"/>
+            <CategoryCard v-for="category in categories" :category="category.slug" :key="category.id" :name="category.name" :image="category.image" :altImage="category.altImage"/>
         </div>
     </section>
 </template>

@@ -14,9 +14,6 @@
 </template>
 
 <script>
-import { useRecipeStore } from '../store/RecipeStore.js'
-
-import { onMounted, ref } from 'vue'
 
 export default {
   name: 'RecipeCard',
@@ -28,29 +25,18 @@ export default {
     category: {
       type: String,
       required: true
-    }
-  },
-  setup(props) {
-    const recipeStore = useRecipeStore()
-    const image = ref('')
-    const altImage = ref('')
-    const name = ref('')
-
-    const getRecipeImage = async (slug) => {
-      await recipeStore.getRecipe(slug)
-      image.value = recipeStore.image
-      altImage.value = recipeStore.recipe.altImage
-      name.value = recipeStore.recipe.name
-    }
-
-    onMounted(() => {
-      getRecipeImage(props.recipe)
-    })
-
-    return {
-      image,
-      altImage,
-      name
+    },
+    image: {
+      type: String,
+      required: true
+    },
+    altImage: {
+      type: String,
+      required: true
+    },
+    name: {
+      type: String,
+      required: true
     }
   }
 }

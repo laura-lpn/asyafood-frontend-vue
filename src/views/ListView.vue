@@ -16,7 +16,7 @@
             <span class="text-yellow font-second font-semibold text-base lg:text-xl">Valider
             </span>
         </div>
-        <div v-for="item in list" class="flex items-center justify-between w-full mb-4 px-4">
+        <div v-for="item in list" class="flex items-center justify-between w-full mb-4 px-4" :key="item.id">
             <p :class="item.validate ? 'line-through' : null" class="lg:text-base text-left">{{ item.quantity ? item.quantity : null }} {{ item.unit ? item.unit : null }} {{ item.ingredient.name }}</p>
             <input type="checkbox" name="validate" @change="toggleValidation(item)" id="validate" :checked="item.validate" class="w-5 h-5 accent-yellow cursor-pointer">
         </div>

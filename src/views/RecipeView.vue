@@ -1,15 +1,15 @@
 <template>
     <section class="w-full h-category-img-mobile lg:h-category-img relative">
-        <img :src="recipeStore.image" :alt="recipeStore.recipe.altImage"
+        <img :src="recipeStore.recipe.image" :alt="recipeStore.recipe.altImage"
             class="w-full h-full bg-center bg-cover z-[0] object-cover">
         <div
             class="w-full bg-filter-white flex flex-col items-center justify-end text-center px-5 md:px-16 lg:px-48 absolute h-full bottom-0">
         </div>
     </section>
-    <MotifTitleRecipe :text="recipeStore.recipe.name" :motif="categoryStore.motif" :alt="categoryStore.category.altMotif"
+    <MotifTitleRecipe :text="recipeStore.recipe.name" :motif="categoryStore.category.motif" :alt="categoryStore.category.altMotif"
         :color="categoryStore.category.color" />
     <div class="w-11/12 flex justify-end my-4 md:w-3/4 mx-auto">
-        <a :href="recipeStore.print" class="text-white rounded-main text-xs px-8 py-2 flex gap-2 items-center lg:text-sm"
+        <a :href="recipeStore.recipe.print" class="text-white rounded-main text-xs px-8 py-2 flex gap-2 items-center lg:text-sm"
             :style="[`background-color: ${categoryStore.category.color}`]" target="_blank"><font-awesome-icon
                 :icon="['fas', 'print']" />Imprimer la recette</a>
     </div>
@@ -20,7 +20,7 @@
             <font-awesome-icon :icon="['fas', 'hourglass-half']" />Temps
         </h2>
         <div class="flex flex-col w-full lg:flex-row mt-4 justify-center gap-2 lg:gap-10">
-            <div class="flex gap-4 justify-center items-end" v-for="time in recipeStore.recipe.times">
+            <div class="flex gap-4 justify-center items-end" v-for="time in recipeStore.recipe.times" :key="time.id">
                 <span class="font-medium text-base">{{ time.timeType.name }} :</span>
                 <p class="text-base">{{ time.value }}</p>
             </div>
@@ -44,7 +44,7 @@
             </button>
         </div>
         <div class="flex flex-col mt-8 gap-4 h-min md:grid md:grid-cols-2 lg:gap-x-10">
-            <div class="gap-2" v-for="ingredient in recipeStore.recipe.ingredients">
+            <div class="gap-2" v-for="ingredient in recipeStore.recipe.ingredients" :key="ingredient.id">
                 <p class="md:text-base xl:text-lg">{{ ingredient.quantity ? ingredient.quantity * modulo : null }} {{
                     ingredient.unit ?
                     ingredient.unit.name : null }}
@@ -67,7 +67,7 @@
             <font-awesome-icon :icon="['fas', 'utensils']" />Préparation
         </h2>
         <div class="w-11/12 md:w-3/4 mx-auto my-8 flex flex-col gap-8 justify-center text-center">
-            <div v-for="etape in sortedSteps">
+            <div v-for="etape in sortedSteps" :key="etape.id">
                 <span class="font-medium text-base md:text-lg">Étape {{ etape.sequence }}</span>
                 <div class="mt-3 md:text-base" v-html="etape.description"></div>
             </div>
@@ -83,10 +83,10 @@
 </template>
 
 <script>
+import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { useCategoryStore } from '../store/CategoryStore.js';
 import { useRecipeStore } from '../store/RecipeStore.js';
-import { ref } from 'vue'
 
 export default {
     name: 'RecipeView',
@@ -94,7 +94,43 @@ export default {
     data() {
         return {
             showSuccessMessage: '',
-            showMessageLogin: ''
+            showMessageLogin: '',
+        };
+    },
+    setup() {
+        const recipeStore = useRecipeStore();
+        const categoryStore = useCategoryStore();
+
+        const getRecipe = async (slug) => {
+            await recipeStore.getRecipe(slug);
+        };
+        const getCategory = async (slug) => {
+            await categoryStore.getCategory(slug);
+        };
+        const modulo = ref(recipeStore.recipe.modulo || 1);
+
+        const incrementModulo = () => {
+            modulo.value+= recipeStore.recipe.modulo;
+        };
+
+        const decrementModulo = () => {
+            if (modulo.value > recipeStore.recipe.modulo) {
+                modulo.value -= recipeStore.recipe.modulo;
+            }
+        };
+
+        watch(() => recipeStore.recipe.modulo, (newVal) => {
+            modulo.value = newVal;
+        });
+
+        return {
+            recipeStore,
+            getRecipe,
+            categoryStore,
+            getCategory,
+            modulo,
+            incrementModulo,
+            decrementModulo,
         };
     },
     methods: {
@@ -103,7 +139,6 @@ export default {
             this.$router.push({ name: 'login', query: { next: currentRoute } });
         },
         async addToShoppingList() {
-
             const ingredients = this.recipeStore.recipe.ingredients;
             const shoppingListData = ingredients.map(ingredient => ({
                 name: ingredient.ingredient.name,
@@ -129,54 +164,15 @@ export default {
             } catch (error) {
                 console.error(error);
             }
-        }
+        },
     },
     computed: {
-        modulo() {
-
-            if (this.recipeStore.recipe.unitModulo === 'personnes') {
-                this.modulo.value = 4;
-            }
-            const calculatedModulo = this.recipeStore.recipe.modulo * this.modulo;
-            return calculatedModulo;
-        },
         sortedSteps() {
             if (this.recipeStore.recipe && this.recipeStore.recipe.steps) {
-                return this.recipeStore.recipe.steps.sort((a, b) => a.sequence - b.sequence);
+                return [...this.recipeStore.recipe.steps].sort((a, b) => a.sequence - b.sequence);
             }
             return [];
         },
-    },
-    setup() {
-        const recipeStore = useRecipeStore();
-        const categoryStore = useCategoryStore();
-
-        const getRecipe = async (slug) => {
-            await recipeStore.getRecipe(slug);
-        };
-        const getCategory = async (slug) => {
-            await categoryStore.getCategory(slug);
-        };
-        const modulo = ref(1);
-        const incrementModulo = () => {
-            modulo.value++;
-        };
-
-        const decrementModulo = () => {
-            if (modulo.value > 1) {
-                modulo.value--;
-            }
-        };
-        return {
-            recipeStore,
-            getRecipe,
-            categoryStore,
-            getCategory,
-            modulo,
-            incrementModulo,
-            decrementModulo,
-        };
-
     },
     async created() {
         const router = useRouter();

@@ -23,9 +23,6 @@
 </template>
 
 <script>
-import { useCategoryStore } from '../store/CategoryStore.js'
-
-import { onMounted, ref } from 'vue'
 
 export default {
   name: 'CategoryCard',
@@ -33,32 +30,19 @@ export default {
     category: {
       type: String,
       required: true
-    }
-  },
-  setup(props) {
-    const categoryStore = useCategoryStore()
-    const image = ref('')
-    const altImage = ref('')
-    const name = ref('')
-
-    const getCategoryImage = async (slug) => {
-      await categoryStore.getCategory(slug)
-      image.value = categoryStore.image
-      altImage.value = categoryStore.category.altImage
-      name.value = categoryStore.category.name
-    }
-
-    onMounted(() => {
-      getCategoryImage(props.category)
-    })
-
-    return {
-      image,
-      altImage,
-      name
+    },
+    image: {
+      type: String,
+      required: true
+    },
+    altImage: {
+      type: String,
+      required: true
+    },
+    name: {
+      type: String,
+      required: true
     }
   }
 }
-
-
 </script>

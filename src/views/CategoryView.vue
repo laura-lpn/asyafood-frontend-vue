@@ -1,11 +1,11 @@
 <template>
   <section class="w-full h-category-img-mobile lg:h-category-img relative">
-    <img :src="categoryStore.image" :alt="categoryStore.category.altImage"
+    <img :src="categoryStore.category.image" :alt="categoryStore.category.altImage"
       class="w-full h-full bg-center bg-cover z-[0] object-cover" />
     <div class="w-full bg-filter-white flex flex-col items-center justify-end text-center px-5 md:px-16 lg:px-48 absolute h-full bottom-0">
     </div>
   </section>
-  <MotifTitleCategory :text="categoryNameLowercase" :motif="categoryStore.motif" :alt="categoryStore.category.altMotif"
+  <MotifTitleCategory :text="categoryNameLowercase" :motif="categoryStore.category.motif" :alt="categoryStore.category.altMotif"
     :color="categoryStore.category.color" />
   <section class="text-center w-4/5 mx-auto my-6 lg:w-3/5" v-html="categoryStore.category.description"></section>
   <a href="#recettes" class="flex justify-center text-3xl"
@@ -49,6 +49,9 @@
         :key="recipe.id"
         :recipe="recipe.slug"
         :category="categoryStore.category.slug"
+        :image="recipe.image"
+        :altImage="recipe.altImage"
+        :name="recipe.name"
       />
     </template>
     <template v-else>
@@ -118,6 +121,7 @@ export default {
     }
   },
   setup() {
+    const router = useRouter()
     const categoryStore = useCategoryStore()
     const currentPage = ref(1)
     const recipeTypes = ['Entrée', 'Plat', 'Dessert', 'Sauce']
@@ -141,6 +145,7 @@ export default {
       currentPage.value = newPage
     }
     return {
+      router,
       categoryStore,
       getCategory,
       currentPage,

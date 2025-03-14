@@ -4,9 +4,7 @@ import { useRouter } from 'vue-router'
 export const useRecipeStore = defineStore({
   id: 'recipe',
   state: () => ({
-    recipe: {},
-    image: '',
-    print: ''
+    recipe: {}
   }),
   actions: {
     async getRecipe(slug) {
@@ -19,14 +17,6 @@ export const useRecipeStore = defineStore({
         } else {
           const recipe = await response.json()
           this.recipe = recipe
-
-          const responseBlob = await fetch(`https://master-7rqtwti-isda55xcmtcww.fr-4.platformsh.site/api/recipe/image/${slug}`)
-          const blob = await responseBlob.blob()
-          this.image = URL.createObjectURL(blob)
-
-          const responsePrint = await fetch(`https://master-7rqtwti-isda55xcmtcww.fr-4.platformsh.site/api/recipe/print/${slug}`)
-          const blobRecipe = await responsePrint.blob()
-          this.print = URL.createObjectURL(blobRecipe)
         }
       } catch (error) {
         console.error(error)
