@@ -65,6 +65,7 @@ export default {
 
       const response = await fetch('https://master-7rqtwti-isda55xcmtcww.fr-4.platformsh.site/api/login', {
         method: 'POST',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json'
         },
