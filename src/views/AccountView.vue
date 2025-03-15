@@ -146,7 +146,7 @@ export default {
     },
     async updateUsername() {
       try {
-        const response = await fetch('https://backend.asyafood.fr/api/profil/edit-username', {
+        const response = await fetch('https://backend.asyafood.fr/api/profil/edit_username', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
