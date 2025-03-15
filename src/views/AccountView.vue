@@ -135,7 +135,6 @@ export default {
         if (response.ok) {
           this.user.email = this.newEmail;
           this.newEmail = '';
-          this.logout();
         }
         if (response.status === 409) {
           this.errorEmail = 'Cet e-mail est déjà utilisé';
@@ -158,7 +157,6 @@ export default {
         if (response.ok) {
           this.user.username = this.newUsername;
           this.newUsername = '';
-          this.logout();
         }
         if (response.status === 409) {
           this.errorUsername = 'Ce pseudo est déjà utilisé';
@@ -187,7 +185,6 @@ export default {
           console.log('Mot de passe mis à jour avec succès');
           this.newPassword = '';
           this.confirmPassword = '';
-          this.logout();
         } else {
           console.error('Erreur lors de la mise à jour du mot de passe');
         }
@@ -213,7 +210,7 @@ export default {
         });
 
         if (response.ok) {          
-          this.$router.push({ name: 'login' })
+          this.logout();
         } else if (response.status === 401) {
           this.errorDelete = 'Mot de passe incorrect. Veuillez réessayer.';
         } else {
