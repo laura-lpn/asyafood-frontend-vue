@@ -49,6 +49,8 @@ export default {
       method: 'GET',
       credentials: 'include'
     });
+    console.log(token)
+    console.log(token.ok)
     if (token.ok) {
       this.$router.push({ name: 'account' })
     }

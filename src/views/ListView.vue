@@ -72,11 +72,13 @@ export default {
             }
         }
     },
-    async beforeMount() {
+    async mounted() {
         const token = fetch('https://backend.asyafood.fr/api/check-token', {
             method: 'GET',
             credentials: 'include'
         });
+        console.log(token)
+        console.log(!token.ok)
         if (!token.ok) {
             this.$router.push({ name: 'login' })
         }
