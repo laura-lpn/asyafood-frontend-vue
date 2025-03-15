@@ -135,6 +135,7 @@ export default {
         if (response.ok) {
           this.user.email = this.newEmail;
           this.newEmail = '';
+          this.logout();
         }
         if (response.status === 409) {
           this.errorEmail = 'Cet e-mail est déjà utilisé';
