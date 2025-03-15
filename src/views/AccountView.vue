@@ -227,7 +227,7 @@ export default {
       method: 'GET',
       credentials: 'include'
     });
-    if (tokenResponse.status === 401) {
+    if (!tokenResponse.status === 200) {
       this.$router.push({ name: 'login' })
     }
     const response = await fetch('https://backend.asyafood.fr/api/profil', {

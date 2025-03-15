@@ -9,9 +9,9 @@
             ">De la cuisine <em class="text-red not-italic font-medium">japonaise</em> à la cuisine <em
                     class="text-red not-italic font-medium">thaïlandaise</em> en passant par la cuisine <em
                     class="text-red not-italic font-medium">chinoise</em>, vous trouverez ici des recettes simples à
-                réaliser chez vous. Laissez-nous vous guider dans un <em class="text-red not-italic font-medium">voyage
+                réaliser chez vous.<br>Laissez-nous vous guider dans un <em class="text-red not-italic font-medium">voyage
                     culinaire</em> à travers l'Asie et découvrez de nouveaux goûts et de <em
-                    class="text-red not-italic font-medium">nouvelles saveurs</em> à chaque bouchée. Bon appétit !</p>
+                    class="text-red not-italic font-medium">nouvelles saveurs</em> à chaque bouchée.<br>Bon appétit !</p>
             <a href="#recent" class="duration-500">
                 <Vue3Lottie :animationData="ScrollJSON" :height="100" :width="100" />
             </a>
