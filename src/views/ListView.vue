@@ -44,7 +44,7 @@ export default {
     methods: {
         async toggleValidation(item) {
             try {
-                const response = await fetch(`https://master-7rqtwti-isda55xcmtcww.fr-4.platformsh.site/api/list/validate/${item.id}`, {
+                const response = await fetch(`https://backend.asyafood.fr/api/list/validate/${item.id}`, {
                     method: 'POST'
                 });
                 if (response.ok) {
@@ -57,7 +57,7 @@ export default {
         },
         async clearList() {
             try {
-                const response = await fetch(`https://master-7rqtwti-isda55xcmtcww.fr-4.platformsh.site/api/list/clear`, {
+                const response = await fetch(`https://backend.asyafood.fr/api/list/clear`, {
                     method: 'POST'
                 });
 
@@ -73,11 +73,11 @@ export default {
         }
     },
     async beforeMount() {
-        const token = fetch('https://master-7rqtwti-isda55xcmtcww.fr-4.platformsh.site/api/check-token')
+        const token = fetch('https://backend.asyafood.fr/api/check-token')
         if (!token.ok) {
             this.$router.push({ name: 'login' })
         }
-        const response = await fetch('https://master-7rqtwti-isda55xcmtcww.fr-4.platformsh.site//api/list');
+        const response = await fetch('https://backend.asyafood.fr//api/list');
         if(response.ok) {
             this.list = await response.json();
         }

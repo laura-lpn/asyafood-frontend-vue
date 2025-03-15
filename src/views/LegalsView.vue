@@ -155,7 +155,7 @@ export default {
   },
   methods: {
     async getCategories() {
-      const response = await fetch('https://master-7rqtwti-isda55xcmtcww.fr-4.platformsh.site/api/categories')
+      const response = await fetch('https://backend.asyafood.fr/api/categories')
       const categories = await response.json()
       this.categories = categories
     }

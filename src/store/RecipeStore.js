@@ -11,7 +11,7 @@ export const useRecipeStore = defineStore({
       const router = useRouter()
 
       try {
-        const response = await fetch(`https://master-7rqtwti-isda55xcmtcww.fr-4.platformsh.site/api/recipe/${slug}`)
+        const response = await fetch(`https://backend.asyafood.fr/api/recipe/${slug}`)
         if (response.status === 404) {
           router.push({ name: 'notFound', params: { catchAll: '404' } })
         } else {

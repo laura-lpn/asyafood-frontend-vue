@@ -123,7 +123,7 @@ export default {
     },
     async updateEmail() {
       try {
-        const response = await fetch('https://master-7rqtwti-isda55xcmtcww.fr-4.platformsh.site/api/profil/edit-email', {
+        const response = await fetch('https://backend.asyafood.fr/api/profil/edit-email', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -145,7 +145,7 @@ export default {
     },
     async updateUsername() {
       try {
-        const response = await fetch('https://master-7rqtwti-isda55xcmtcww.fr-4.platformsh.site/api/profil/edit-username', {
+        const response = await fetch('https://backend.asyafood.fr/api/profil/edit-username', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -172,7 +172,7 @@ export default {
       }
 
       try {
-        const response = await fetch('https://master-7rqtwti-isda55xcmtcww.fr-4.platformsh.site/api/profil/edit-password', {
+        const response = await fetch('https://backend.asyafood.fr/api/profil/edit-password', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -193,14 +193,14 @@ export default {
       }
     },
     async logout() {
-      const response = await fetch('https://master-7rqtwti-isda55xcmtcww.fr-4.platformsh.site/api/logout')
+      const response = await fetch('https://backend.asyafood.fr/api/logout')
       if (response.ok) {
         this.$router.push({ name: 'login' })
       }
     },
     async confirmAccountDeletion() {
       try {
-        const response = await fetch('https://master-7rqtwti-isda55xcmtcww.fr-4.platformsh.site/api/profil/delete', {
+        const response = await fetch('https://backend.asyafood.fr/api/profil/delete', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -221,11 +221,11 @@ export default {
     }
   },
   async beforeMount() {
-    const token = fetch('https://master-7rqtwti-isda55xcmtcww.fr-4.platformsh.site/api/check-token')
+    const token = fetch('https://backend.asyafood.fr/api/check-token')
     if (!token.ok) {
       this.$router.push({ name: 'login' })
     }
-    const response = await fetch('https://master-7rqtwti-isda55xcmtcww.fr-4.platformsh.site/api/profil')
+    const response = await fetch('https://backend.asyafood.fr/api/profil')
     if (response.ok) {
       const user = await response.json()
       this.user = user

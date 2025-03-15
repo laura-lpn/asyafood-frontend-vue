@@ -147,7 +147,7 @@ export default {
             }));
 
             try {
-                const response = await fetch('https://master-7rqtwti-isda55xcmtcww.fr-4.platformsh.site/api/list/add', {
+                const response = await fetch('https://backend.asyafood.fr/api/list/add', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

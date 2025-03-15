@@ -64,12 +64,12 @@ export default {
     },
     methods: {
         async getRecentRecipes() {
-            const response = await fetch('https://master-7rqtwti-isda55xcmtcww.fr-4.platformsh.site/api/recipes?limit=3&orderBy=id&order=desc');
+            const response = await fetch('https://backend.asyafood.fr/api/recipes?limit=3&orderBy=id&order=desc');
             const recentRecipes = await response.json();
             this.recentRecipes = recentRecipes;
         },
         async getCategories() {
-            const response = await fetch('https://master-7rqtwti-isda55xcmtcww.fr-4.platformsh.site/api/categories');
+            const response = await fetch('https://backend.asyafood.fr/api/categories');
             const categories = await response.json();
             this.categories = categories;
         }
