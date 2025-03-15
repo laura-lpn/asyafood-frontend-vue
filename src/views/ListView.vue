@@ -80,7 +80,7 @@ export default {
         if (tokenResponse.status === 401) {
             this.$router.push({ name: 'login' })
         }
-        const response = await fetch('https://backend.asyafood.fr//api/list', {
+        const response = await fetch('https://backend.asyafood.fr/api/list', {
             method: 'GET',
             credentials: 'include'
         });
