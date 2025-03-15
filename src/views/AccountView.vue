@@ -128,6 +128,7 @@ export default {
           headers: {
             'Content-Type': 'application/json',
           },
+          credentials: 'include',
           body: JSON.stringify({ email: this.newEmail }),
         });
 
@@ -150,6 +151,7 @@ export default {
           headers: {
             'Content-Type': 'application/json',
           },
+          credentials: 'include',
           body: JSON.stringify({ username: this.newUsername }),
         });
 
@@ -177,6 +179,7 @@ export default {
           headers: {
             'Content-Type': 'application/json',
           },
+          credentials: 'include',
           body: JSON.stringify({ password: this.newPassword }),
         });
 
@@ -205,6 +208,7 @@ export default {
           headers: {
             'Content-Type': 'application/json',
           },
+          credentials: 'include',
           body: JSON.stringify({ password: this.deletePassword }),
         });
 

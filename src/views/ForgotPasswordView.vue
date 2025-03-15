@@ -46,7 +46,8 @@ export default {
       try {
         const response = await fetch('https://backend.asyafood.fr/api/forgot-password', {
           method: 'POST',
-          body: formData
+          body: formData,
+          credentials: 'include',
         });
 
         this.isLoading = false;

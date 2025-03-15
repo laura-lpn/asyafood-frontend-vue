@@ -65,7 +65,10 @@ export default {
   async beforeMount() {
     const token = this.$route.params.token
     try {
-      const response = await fetch(`https://backend.asyafood.fr/api/reset/${token}`)
+      const response = await fetch(`https://backend.asyafood.fr/api/reset/${token}`, {
+        method: 'GET',        
+        credentials: 'include',
+      })
       if (response.status === 404) {
         this.$router.push({ name: 'notFound', params: {catchAll: '404'} })
       }
@@ -87,6 +90,7 @@ export default {
           headers: {
             'Content-Type': 'application/json'
           },
+          credentials: 'include',
           body: JSON.stringify({
             newPassword: this.newPassword
           })

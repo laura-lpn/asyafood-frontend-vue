@@ -45,7 +45,8 @@ export default {
         async toggleValidation(item) {
             try {
                 const response = await fetch(`https://backend.asyafood.fr/api/list/validate/${item.id}`, {
-                    method: 'POST'
+                    method: 'POST',
+                    credentials: 'include',
                 });
                 if (response.ok) {
                     // Mettre à jour l'élément local avec la nouvelle valeur "validate"
@@ -58,7 +59,8 @@ export default {
         async clearList() {
             try {
                 const response = await fetch(`https://backend.asyafood.fr/api/list/clear`, {
-                    method: 'POST'
+                    method: 'POST',
+                    credentials: 'include',
                 });
 
                 if (response.ok) {

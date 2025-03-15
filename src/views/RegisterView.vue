@@ -108,6 +108,7 @@ export default {
         headers: {
           'Content-Type': 'application/json'
         },
+        credentials: 'include',
         body: JSON.stringify({
           username: this.username,
           email: this.email,
