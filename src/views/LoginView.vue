@@ -65,6 +65,7 @@ export default {
 
       const response = await fetch('https://backend.asyafood.fr/api/login', {
         method: 'POST',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json'
         },
