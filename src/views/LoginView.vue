@@ -45,13 +45,15 @@ export default {
     }
   },
   setup() {
-    const token = fetch('https://backend.asyafood.fr/api/check-token')
+    const token = fetch('https://backend.asyafood.fr/api/check-token', {
+      method: 'GET',
+      credentials: 'include'
+    });
     if (token.ok) {
       this.$router.push({ name: 'account' })
     }
   },
   created() {
-    // Check for the query parameter when the component is created
     const params = new URLSearchParams(this.$route.query);
     if (params.get('success')) {
       this.successMessage = 'Inscription réussie ! Connectez-vous pour continuer.';

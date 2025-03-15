@@ -221,11 +221,17 @@ export default {
     }
   },
   async beforeMount() {
-    const token = fetch('https://backend.asyafood.fr/api/check-token')
+    const token = fetch('https://backend.asyafood.fr/api/check-token', {
+      method: 'GET',
+      credentials: 'include'
+    });
     if (!token.ok) {
       this.$router.push({ name: 'login' })
     }
-    const response = await fetch('https://backend.asyafood.fr/api/profil')
+    const response = await fetch('https://backend.asyafood.fr/api/profil', {
+      method: 'GET',
+      credentials: 'include'
+    });
     if (response.ok) {
       const user = await response.json()
       this.user = user
