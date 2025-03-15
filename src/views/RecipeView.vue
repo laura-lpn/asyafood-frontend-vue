@@ -130,6 +130,7 @@ export default {
             categoryStore,
             getCategory,
             modulo,
+            multiple,
             incrementModulo,
             decrementModulo,
         };
