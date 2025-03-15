@@ -9,9 +9,9 @@
     <div
     class="relative flex justify-center items-center w-full
     ">
-      <RouterLink :to="{ name: 'home'}" title="Accueil" class="hover:animate-pulse z-[100]"><img src="/logo.svg" alt="logo Asya Food" 
-        class="h-16 lg:h-20"
-        ></RouterLink>
+      <RouterLink :to="{ name: 'home'}" title="Accueil" class="hover:animate-pulse z-[100]">
+        <img src="/logo.svg" alt="logo Asya Food" class="h-16 lg:h-20" />
+      </RouterLink>
       <nav 
       class="absolute left-7 text-xl flex gap-5 lg:right-0 lg:left-auto
       ">
