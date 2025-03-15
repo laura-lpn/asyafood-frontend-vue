@@ -2,9 +2,6 @@
     <section class="w-full h-category-img-mobile lg:h-category-img relative">
         <img :src="recipeStore.recipe.image" :alt="recipeStore.recipe.altImage"
             class="w-full h-full bg-center bg-cover z-[0] object-cover">
-        <div
-            class="w-full bg-filter-white flex flex-col items-center justify-end text-center px-5 md:px-16 lg:px-48 absolute h-full bottom-0">
-        </div>
     </section>
     <MotifTitleRecipe :text="recipeStore.recipe.name" :motif="categoryStore.category.motif" :alt="categoryStore.category.altMotif"
         :color="categoryStore.category.color" />
