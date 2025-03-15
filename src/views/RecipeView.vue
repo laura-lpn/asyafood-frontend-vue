@@ -42,7 +42,7 @@
         </div>
         <div class="flex flex-col mt-8 gap-4 h-min md:grid md:grid-cols-2 lg:gap-x-10">
             <div class="gap-2" v-for="ingredient in recipeStore.recipe.ingredients" :key="ingredient.id">
-                <p class="md:text-base xl:text-lg">{{ ingredient.quantity ? ingredient.quantity * modulo : null }} {{
+                <p class="md:text-base xl:text-lg">{{ ingredient.quantity ? ingredient.quantity * multiple : null }} {{
                     ingredient.unit ?
                     ingredient.unit.name : null }}
                     {{ ingredient.ingredient.name }}</p>
@@ -106,12 +106,16 @@ export default {
         };
         const modulo = ref(recipeStore.recipe.modulo || 1);
 
+        const multiple = ref(1);
+
         const incrementModulo = () => {
+            multiple.value++;
             modulo.value+= recipeStore.recipe.modulo;
         };
 
         const decrementModulo = () => {
             if (modulo.value > recipeStore.recipe.modulo) {
+                multiple.value--;
                 modulo.value -= recipeStore.recipe.modulo;
             }
         };
