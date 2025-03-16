@@ -43,9 +43,10 @@
         <div class="flex flex-col mt-8 gap-4 h-min md:grid md:grid-cols-2 lg:gap-x-10">
             <div class="gap-2" v-for="ingredient in recipeStore.recipe.ingredients" :key="ingredient.id">
                 <p class="md:text-base xl:text-lg">{{ ingredient.quantity ? ingredient.quantity * multiple : null }} {{
-                    ingredient.unit ?
-                    ingredient.unit.name : null }}
-                    {{ ingredient.ingredient.name }}</p>
+                    ingredient.quantity * multiple > 1 ?
+                    ingredient.unit ? ingredient.unit.namePlurial : null :
+                    ingredient.unit ? ingredient.unit.name : null }}
+                    {{ ingredient.quantity * multiple > 1 ? ingredient.ingredient.namePlurial : ingredient.ingredient.name }}</p>
             </div>
         </div>
         <button @click="addToShoppingList"
