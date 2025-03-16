@@ -93,16 +93,23 @@ export default {
     }
 
     const updateURL = () => {
-      const query = {
-        page: currentPage.value,
-        types: selectedFilters.value.types.join(','),
-        genres: selectedFilters.value.genres.join(','),
+      const query = {}
+
+      if (currentPage.value > 1) {
+        query.page = currentPage.value
+      }
+      if (selectedFilters.value.types.length > 0) {
+        query.types = selectedFilters.value.types.join(',')
+      }
+      if (selectedFilters.value.genres.length > 0) {
+        query.genres = selectedFilters.value.genres.join(',')
       }
 
       const newUrl = router.resolve({ query }).href
       history.replaceState(null, '', newUrl)
     }
 
+    // 🔍 Recalcule les recettes filtrées
     const filteredRecipes = computed(() => {
       const normalizeString = (str) => str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
       const typeFilter = selectedFilters.value.types.map(normalizeString)
