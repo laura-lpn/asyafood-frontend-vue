@@ -62,7 +62,7 @@
 <script>
 import { useRouter, useRoute } from 'vue-router'
 import { useCategoryStore } from '../store/CategoryStore.js'
-import { ref, watch, computed, nextTick } from 'vue'
+import { ref, watch, computed, nextTick, onMounted } from 'vue'
 
 export default {
   setup() {
@@ -152,6 +152,10 @@ export default {
       currentPage.value = newPage
     }
 
+    onMounted(async () => {
+      await getCategory(route.params.slug)
+    })
+
     return {
       categoryStore,
       currentPage,
@@ -162,10 +166,8 @@ export default {
       changePage,
       recipeTypes,
       recipeGenres,
+      getCategory,
     }
-  },
-  async created() {
-    await this.getCategory(this.$route.params.slug)
   }
 }
 </script>
