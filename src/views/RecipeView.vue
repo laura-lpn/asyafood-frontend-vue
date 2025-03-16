@@ -114,7 +114,7 @@ export default {
         };
 
         const decrementModulo = () => {
-            if (multiple.value > recipeStore.recipe.modulo) {
+            if (multiple.value > 1) {
                 multiple.value--;
                 modulo.value == recipeStore.recipe.modulo * multiple.value;
             }
