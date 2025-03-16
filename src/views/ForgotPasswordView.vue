@@ -1,8 +1,5 @@
 <template>
     <section class="bg-forgotPassword h-category-img-mobile w-full bg-center bg-cover lg:h-category-img">
-        <div
-            class="w-full h-full bg-filter-white flex flex-col items-center justify-end text-center px-5 md:px-16 lg:px-48">
-        </div>
     </section>
     <MotifTitle text="Mot de passe oublié" />
     <div v-if="successMessage" class="text-yellow font-bold py-2 px-4, text-center w-4/5 m-auto md:w-3/5 lg:w-1/2">

@@ -1,7 +1,5 @@
 <template>
   <section class="bg-account h-category-img-mobile w-full lg:h-category-img bg-center bg-cover">
-    <div class="w-full h-full bg-filter-white flex flex-col items-center justify-end text-center px-5 md:px-16 lg:px-48">
-    </div>
   </section>
   <section class="flex flex-col items-center relative w-4/5 mx-auto">
     <MotifTitle text="Mon compte" />

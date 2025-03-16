@@ -2,10 +2,6 @@
     <section
     class="bg-list h-category-img-mobile w-full bg-center bg-cover lg:h-category-img
     ">
-        <div
-        class="w-full h-full bg-filter-white flex flex-col items-center justify-end text-center px-5 md:px-16 lg:px-48
-        ">
-        </div>
     </section>
     <MotifTitle text="Ma liste de course"/>
     <section class="flex items-center flex-col justify-center text-center mt-8 mb-12 m-auto w-11/12 shadow-main rounded-mobile py-6 px-8 md:w-3/4 lg:w-3/5 xl:w-1/2 md:px-12 lg:px-20">

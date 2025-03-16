@@ -1,8 +1,5 @@
 <template>
   <section class="bg-legals h-category-img-mobile w-full bg-center bg-cover lg:h-category-img">
-    <div
-      class="w-full h-full bg-filter-white flex flex-col items-center justify-end text-center px-5 md:px-16 lg:px-48"
-    ></div>
   </section>
   <MotifTitle text="Mentions légales" />
   <section class="w-11/12 mx-auto md:w-3/4">
