@@ -93,13 +93,14 @@ export default {
     }
 
     const updateURL = () => {
-      router.replace({
-        query: {
-          page: currentPage.value,
-          types: selectedFilters.value.types.join(','),
-          genres: selectedFilters.value.genres.join(','),
-        }
-      })
+      const query = {
+        page: currentPage.value,
+        types: selectedFilters.value.types.join(','),
+        genres: selectedFilters.value.genres.join(','),
+      }
+
+      const newUrl = router.resolve({ query }).href
+      history.replaceState(null, '', newUrl)
     }
 
     const filteredRecipes = computed(() => {
@@ -126,7 +127,12 @@ export default {
       return filteredRecipes.value.slice(startIdx, startIdx + recipesPerPage)
     })
 
-    watch([currentPage, selectedFilters], updateURL, { deep: true })
+    watch(selectedFilters, () => {
+      currentPage.value = 1
+      updateURL()
+    }, { deep: true })
+
+    watch(currentPage, updateURL)
 
     watch(() => route.params.slug, async (newSlug) => {
       currentPage.value = 1
