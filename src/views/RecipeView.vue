@@ -33,7 +33,7 @@
                 class="border-2 flex items-center justify-center border-black w-6 h-6 aspect-square rounded-[8px] hover:bg-yellow hover:text-white hover:border-yellow">
                 <font-awesome-icon :icon="['fas', 'minus']" />
             </button>
-            <span class="font-medium text-base md:text-lg xl:text-xl">Pour {{ modulo }} {{ recipeStore.recipe.unitModulo
+            <span class="font-medium text-base md:text-lg xl:text-xl">Pour {{ modulo * multiple }} {{ recipeStore.recipe.unitModulo
             }}</span>
             <button @click="incrementModulo"
                 class="border-2 flex items-center justify-center border-black w-6 h-6 aspect-square rounded-[8px] hover:bg-yellow hover:text-white hover:border-yellow">
@@ -106,17 +106,17 @@ export default {
         };
         const modulo = ref(recipeStore.recipe.modulo || 1);
 
-        const multiple = ref(1);
+        const multiple = recipeStore.recipe.unitModulo === "personnes" ? ref(4) : ref(1);
 
         const incrementModulo = () => {
             multiple.value++;
-            modulo.value+= recipeStore.recipe.modulo;
+            modulo.value == recipeStore.recipe.modulo * multiple.value;
         };
 
         const decrementModulo = () => {
             if (modulo.value > recipeStore.recipe.modulo) {
                 multiple.value--;
-                modulo.value -= recipeStore.recipe.modulo;
+                modulo.value == recipeStore.recipe.modulo * multiple.value;
             }
         };
 
