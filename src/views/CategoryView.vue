@@ -60,102 +60,100 @@
 </template>
 
 <script>
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { useCategoryStore } from '../store/CategoryStore.js'
-import { ref } from 'vue'
+import { ref, watch, computed, nextTick } from 'vue'
 
 export default {
-  data: () => ({
-    selectedFilters: {
-      types: [],
-      genres: []
-    },
-    recipesPerPage: 6,
-  }),
-  computed: {
-    categoryNameLowercase() {
-      const categoryName = this.categoryStore.category.name
-      if (categoryName) {
-        return categoryName.toLowerCase()
-      }
-      return ''
-    },
-    filteredRecipes: function () {
-      const normalizeString = (str) => {
-        return str
-          .toLowerCase()
-          .normalize("NFD")
-          .replace(/[\u0300-\u036f]/g, "");
-      };
-
-      const typeFilter = this.selectedFilters.types.map(normalizeString);
-      const genreFilter = this.selectedFilters.genres.map(normalizeString);
-      const recipes = this.categoryStore.category.recipes;
-
-      if (typeFilter.length === 0 && genreFilter.length === 0) {
-        return recipes;
-      }
-
-      const filtered = recipes.filter((recipe) => {
-        const typeMatch = typeFilter.length === 0 || typeFilter.includes(recipe.type);
-        const genreMatch = genreFilter.length === 0 || genreFilter.includes(recipe.genre);
-        return typeMatch && genreMatch;
-      });
-      return filtered;
-    },
-    filteredTotalPages() {
-      const filteredRecipes = this.filteredRecipes;
-      return Math.ceil((filteredRecipes || []).length / this.recipesPerPage);
-    },
-    paginatedRecipes() {
-      const startIdx = (this.currentPage - 1) * this.recipesPerPage;
-      const endIdx = startIdx + this.recipesPerPage;
-
-      if (this.filteredRecipes) {
-        return this.filteredRecipes.slice(startIdx, endIdx);
-      } else {
-        return [];
-      }
-    }
-  },
   setup() {
     const router = useRouter()
+    const route = useRoute()
     const categoryStore = useCategoryStore()
-    const currentPage = ref(1)
+
+    const currentPage = ref(parseInt(route.query.page) || 1)
+    const selectedFilters = ref({
+      types: route.query.types ? route.query.types.split(',') : [],
+      genres: route.query.genres ? route.query.genres.split(',') : [],
+    })
+
     const recipeTypes = ['Entrée', 'Plat', 'Dessert', 'Sauce']
     const recipeGenres = ['Viande', 'Poisson', 'Autre']
+    const recipesPerPage = 6
 
     const getCategory = async (slug) => {
       try {
-        await categoryStore.getCategory(slug);
+        await categoryStore.getCategory(slug)
       } catch (error) {
         if (error.response && error.response.status === 404) {
-          // Rediriger vers la page NotFound en cas d'erreur 404
-          router.push({ name: "NotFound" });
+          router.push({ name: "NotFound" })
         } else {
-          // Gérer d'autres erreurs ici si nécessaire
-          console.error("An error occurred:", error);
+          console.error("An error occurred:", error)
         }
       }
     }
 
+    const updateURL = () => {
+      router.replace({
+        query: {
+          page: currentPage.value,
+          types: selectedFilters.value.types.join(','),
+          genres: selectedFilters.value.genres.join(','),
+        }
+      })
+    }
+
+    const filteredRecipes = computed(() => {
+      const normalizeString = (str) => str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      const typeFilter = selectedFilters.value.types.map(normalizeString)
+      const genreFilter = selectedFilters.value.genres.map(normalizeString)
+      const recipes = categoryStore.category.recipes || []
+
+      if (typeFilter.length === 0 && genreFilter.length === 0) {
+        return recipes
+      }
+
+      return recipes.filter(recipe => {
+        const typeMatch = typeFilter.length === 0 || typeFilter.includes(normalizeString(recipe.type))
+        const genreMatch = genreFilter.length === 0 || genreFilter.includes(normalizeString(recipe.genre))
+        return typeMatch && genreMatch
+      })
+    })
+
+    const filteredTotalPages = computed(() => Math.ceil(filteredRecipes.value.length / recipesPerPage))
+
+    const paginatedRecipes = computed(() => {
+      const startIdx = (currentPage.value - 1) * recipesPerPage
+      return filteredRecipes.value.slice(startIdx, startIdx + recipesPerPage)
+    })
+
+    watch([currentPage, selectedFilters], updateURL, { deep: true })
+
+    watch(() => route.params.slug, async (newSlug) => {
+      currentPage.value = 1
+      selectedFilters.value = { types: [], genres: [] }
+      await getCategory(newSlug)
+
+      nextTick(updateURL)
+    }, { immediate: true })
+
     const changePage = (newPage) => {
       currentPage.value = newPage
     }
+
     return {
-      router,
       categoryStore,
-      getCategory,
       currentPage,
+      selectedFilters,
+      filteredRecipes,
+      paginatedRecipes,
+      filteredTotalPages,
       changePage,
       recipeTypes,
       recipeGenres,
     }
   },
   async created() {
-    const router = useRouter()
-    const slug = router.currentRoute.value.params.slug
-    await this.getCategory(slug)
+    await this.getCategory(this.$route.params.slug)
   }
 }
 </script>
