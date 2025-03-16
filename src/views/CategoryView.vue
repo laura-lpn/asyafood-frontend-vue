@@ -109,7 +109,6 @@ export default {
       history.replaceState(null, '', newUrl)
     }
 
-    // 🔍 Recalcule les recettes filtrées
     const filteredRecipes = computed(() => {
       const normalizeString = (str) => str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
       const typeFilter = selectedFilters.value.types.map(normalizeString)
