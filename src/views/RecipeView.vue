@@ -124,11 +124,14 @@ export default {
             modulo.value = newVal;
         });
 
-        watch(() => recipeStore.recipe.unitModulo, (newVal) => {
-            if (newVal === "personnes") {
+        watch(() => recipeStore.recipe, (newRecipe) => {
+            if (newRecipe?.unitModulo === "personnes") {
                 multiple.value = 4;
+            } else {
+                multiple.value = 1;
             }
-        });
+        }, { deep: true });
+
 
         return {
             recipeStore,
