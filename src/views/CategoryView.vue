@@ -133,6 +133,8 @@ export default {
       return filteredRecipes.value.slice(startIdx, startIdx + recipesPerPage)
     })
 
+    const categoryNameLowercase = computed(() => categoryStore.category.name.toLowerCase())
+
     watch(selectedFilters, () => {
       currentPage.value = 1
       updateURL()
@@ -167,6 +169,7 @@ export default {
       recipeTypes,
       recipeGenres,
       getCategory,
+      categoryNameLowercase,
     }
   }
 }
