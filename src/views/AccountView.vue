@@ -12,11 +12,11 @@
   </section>
   <div class="grid grid-cols-5 w-11/12 md:grid-cols-2 md:w-4/5 gap-4 mx-auto justify-center">
     <span class="font-second col-span-2 md:col-span-1 font-bold text-red flex justify-end">Adresse email :</span>
-    <p class="col-span-3 md:col-span-1">{{ user.email }}</p>
+    <p class="col-span-3 md:col-span-1 break-words">{{ user.email }}</p>
   </div>
   <div class="grid grid-cols-5 w-11/12 md:grid-cols-2 md:w-3/5 gap-4 mx-auto justify-center">
     <span class="font-second col-span-2 md:col-span-1 font-bold text-red flex justify-end">Pseudo :</span>
-    <p class="col-span-3 md:col-span-1">{{ user.username }}</p>
+    <p class="col-span-3 md:col-span-1 break-words">{{ user.username }}</p>
   </div>
   <!-- <section>
     <MotifTitleSection text="Mes recettes favorites" color="yellow" />
