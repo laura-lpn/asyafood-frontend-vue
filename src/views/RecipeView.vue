@@ -106,7 +106,7 @@ export default {
         };
         const modulo = ref(recipeStore.recipe.modulo || 1);
 
-        const multiple = recipeStore.recipe.unitModulo === "personnes" ? ref(4) : ref(1);
+        const multiple = ref(1);
 
         const incrementModulo = () => {
             multiple.value++;
@@ -122,6 +122,12 @@ export default {
 
         watch(() => recipeStore.recipe.modulo, (newVal) => {
             modulo.value = newVal;
+        });
+
+        watch(() => recipeStore.recipe.unitModulo, (newVal) => {
+            if (newVal === "personnes") {
+                multiple.value = 4;
+            }
         });
 
         return {
