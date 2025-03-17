@@ -32,7 +32,7 @@ const router = createRouter({
       meta: {}
     },
     {
-      path: '/recette/:categorySlug/:recipeSlug',
+      path: '/categorie/:categorySlug/:recipeSlug',
       component: RecipeView,
       name: 'recipe',
       meta: {}
