@@ -157,7 +157,7 @@ export default {
             const ingredients = this.recipeStore.recipe.ingredients;
             const shoppingListData = ingredients.map(ingredient => ({
                 name: ingredient.ingredient.name,
-                quantity: ingredient.quantity ? ingredient.quantity * this.modulo : 0,
+                quantity: ingredient.quantity ? ingredient.quantity * this.multiple : null,
                 unit: ingredient.unit ? ingredient.unit.name : null,
             }));
 
