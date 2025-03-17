@@ -40,7 +40,7 @@ export default {
         const getUnit = (item) => {
             if (!item.unit) return "";
             if (item.quantity > 1 && !["ml", "g"].includes(item.unit)) {
-                return item.unit.replace(/^(\w+)/, "$1s");
+                return item.unit.replace(/^([^\s]+)(?=\s|$)/, (match) => match + 's');
             }
             return item.unit;
         };
