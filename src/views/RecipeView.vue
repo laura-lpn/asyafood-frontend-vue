@@ -41,12 +41,8 @@
             </button>
         </div>
         <div class="flex flex-col mt-8 gap-4 h-min md:grid md:grid-cols-2 lg:gap-x-10">
-            <div class="gap-2" v-for="ingredient in recipeStore.recipe.ingredients" :key="ingredient.id">
-                <p class="md:text-base xl:text-lg">{{ ingredient.quantity ? ingredient.quantity * multiple : null }} {{
-                    ingredient.quantity * multiple > 1 ?
-                    ingredient.unit ? ingredient.unit.namePlurial : null :
-                    ingredient.unit ? ingredient.unit.name : null }}
-                    {{ ingredient.quantity * multiple > 1 ? ingredient.ingredient.namePlurial : ingredient.ingredient.name }}</p>
+            <div v-for="ingredient in formattedIngredients" :key="ingredient.id">
+                <p>{{ ingredient.quantity }} {{ ingredient.unit }} {{ ingredient.name }}</p>
             </div>
         </div>
         <button @click="addToShoppingList"
@@ -81,23 +77,18 @@
 </template>
 
 <script>
-import { ref, watch } from 'vue';
+import { ref, watch, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useCategoryStore } from '../store/CategoryStore.js';
 import { useRecipeStore } from '../store/RecipeStore.js';
 
 export default {
     name: 'RecipeView',
-
-    data() {
-        return {
-            showSuccessMessage: '',
-            showMessageLogin: '',
-        };
-    },
     setup() {
         const recipeStore = useRecipeStore();
         const categoryStore = useCategoryStore();
+        const showSuccessMessage = ref('');
+        const showMessageLogin = ref('');
 
         const getRecipe = async (slug) => {
             await recipeStore.getRecipe(slug);
@@ -111,13 +102,13 @@ export default {
 
         const incrementModulo = () => {
             multiple.value++;
-            modulo.value == recipeStore.recipe.modulo * multiple.value;
+            modulo.value = recipeStore.recipe.modulo * multiple.value;
         };
 
         const decrementModulo = () => {
             if (multiple.value > 1) {
                 multiple.value--;
-                modulo.value == recipeStore.recipe.modulo * multiple.value;
+                modulo.value = recipeStore.recipe.modulo * multiple.value;
             }
         };
 
@@ -133,6 +124,14 @@ export default {
             }
         }, { deep: true });
 
+        
+        onMounted(async () => {
+            const router = useRouter();
+            const slug = router.currentRoute.value.params.slug;
+            const category = router.currentRoute.value.params.category;
+            await getRecipe(slug);
+            await getCategory(category);
+        });
 
         return {
             recipeStore,
@@ -143,6 +142,8 @@ export default {
             multiple,
             incrementModulo,
             decrementModulo,
+            showSuccessMessage,
+            showMessageLogin,
         };
     },
     methods: {
@@ -186,14 +187,14 @@ export default {
             }
             return [];
         },
+        formattedIngredients() {
+            return this.recipeStore.recipe.ingredients.map(ingredient => ({
+                name: ingredient.quantity * this.multiple > 1 ? ingredient.ingredient.namePlurial : ingredient.ingredient.name,
+                quantity: ingredient.quantity ? ingredient.quantity * this.multiple : null,
+                unit: ingredient.quantity * this.multiple > 1 ? ingredient.unit ? ingredient.unit.namePlurial : null : ingredient.unit ? ingredient.unit.name : null
+            }));
+        },
     },
-    async created() {
-        const router = useRouter();
-        const slug = router.currentRoute.value.params.slug;
-        const category = router.currentRoute.value.params.category;
-        await this.getRecipe(slug);
-        await this.getCategory(category);
-    }
 };
 
 </script>

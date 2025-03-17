@@ -1,6 +1,6 @@
 <template>
     <section class="bg-list h-category-img-mobile w-full bg-center bg-cover lg:h-category-img"></section>
-    <MotifTitle text="Ma liste de course" />   
+    <MotifTitle text="Ma liste de course" />
     <section class="flex items-center flex-col justify-center text-center mt-8 mb-12 m-auto w-11/12 shadow-main rounded-mobile py-6 px-8 md:w-3/4 lg:w-3/5 xl:w-1/2 md:px-12 lg:px-20">
         <div class="w-full flex items-center justify-between mb-4">
             <span class="text-yellow font-second font-semibold text-base lg:text-xl">Ingrédients</span>
@@ -27,82 +27,78 @@
 </template>
 
 <script>
+import { ref, onMounted } from "vue";
+import { useRouter, useRoute } from "vue-router";
+
 export default {
     name: "ListView",
+    setup() {
+        const list = ref([]);
+        const router = useRouter();
+        const route = useRoute();
 
-    data() {
-        return {
-            list: []
+        const getUnit = (item) => {
+            if (!item.unit) return "";
+            if (item.quantity > 1 && !["ml", "g"].includes(item.unit)) {
+                return item.unit.replace(/^(\w+)/, "$1s");
+            }
+            return item.unit;
         };
-    },
-    computed: {
-        getUnit() {
-            return (item) => {
-                if (!item.unit) return '';
-                if (item.quantity > 1 && !['ml', 'g'].includes(item.unit)) {
-                    return item.unit.replace(/^(\w+)/, '$1s');
-                }
-                return item.unit;
-            };
-        }
-    },
-    methods: {
-        async toggleValidation(item) {
+        const toggleValidation = async (item) => {
             try {
                 const response = await fetch(`https://backend.asyafood.fr/api/list/validate/${item.id}`, {
-                    method: 'POST',
-                    credentials: 'include',
+                    method: "POST",
+                    credentials: "include",
                 });
                 if (response.ok) {
-                    item.validate = !item.validate;
+                    // Mise à jour réactive de la liste
+                    list.value = list.value.map((i) =>
+                        i.id === item.id ? { ...i, validate: !i.validate } : i
+                    );
                 }
             } catch (error) {
-                console.error('Erreur lors de la mise à jour de la validation :', error);
+                console.error("Erreur lors de la mise à jour de la validation :", error);
             }
-        },
-        async clearList() {
+        };
+        const clearList = async () => {
             try {
                 const response = await fetch(`https://backend.asyafood.fr/api/list/clear`, {
-                    method: 'POST',
-                    credentials: 'include',
+                    method: "POST",
+                    credentials: "include",
                 });
 
                 if (response.ok) {
-                    this.list = [];
+                    list.value = [];
                 } else {
-                    console.error('Erreur lors de la suppression de la liste');
+                    console.error("Erreur lors de la suppression de la liste");
                 }
             } catch (error) {
-                console.error('Erreur lors de la suppression de la liste :', error);
+                console.error("Erreur lors de la suppression de la liste :", error);
             }
-        }
+        };
+        onMounted(async () => {
+            try {
+                const response = await fetch("https://backend.asyafood.fr/api/list", {
+                    method: "GET",
+                    credentials: "include",
+                });
+
+                if (response.ok) {
+                    list.value = await response.json();
+                } else if (response.status === 401) {
+                    router.push({ name: "login", query: { next: route.fullPath } });
+                }
+            } catch (error) {
+                console.error("Erreur lors du chargement de la liste :", error);
+            }
+        });
+
+        return {
+            list,
+            getUnit,
+            toggleValidation,
+            clearList,
+        };
     },
-    async mounted() {
-        try {
-            const tokenResponse = await fetch('https://backend.asyafood.fr/api/check-token', {
-                method: 'GET',
-                credentials: 'include'
-            });
-
-            if (tokenResponse.status === 401) {
-                this.$router.push({ name: 'login' });
-                return;
-            }
-
-            const response = await fetch('https://backend.asyafood.fr/api/list', {
-                method: 'GET',
-                credentials: 'include'
-            });
-
-            if (response.ok) {
-                this.list = await response.json();
-            } else {
-                const currentRoute = this.$route.fullPath;
-                this.$router.push({ name: 'login', query: { next: currentRoute } });
-            }
-        } catch (error) {
-            console.error("Erreur lors du chargement de la liste :", error);
-        }
-    }
-}
+};
 </script>

@@ -138,7 +138,7 @@ router.beforeEach(async (to) => {
       let response
       if (to.name === 'category') {
         response = await fetch(`https://backend.asyafood.fr/api/category/${to.params.slug}`)
-      } else {
+      } else if (to.name === 'recipe') {
         response = await fetch(`https://backend.asyafood.fr/api/recipe/${to.params.slug}`)
       }
 
