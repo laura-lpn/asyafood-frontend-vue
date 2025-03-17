@@ -131,8 +131,7 @@ export default {
                 
                 await getCategory(categorySlug);
                 await getRecipe(newSlug);
-            },
-            { immediate: true }
+            }
         );
 
         return {
