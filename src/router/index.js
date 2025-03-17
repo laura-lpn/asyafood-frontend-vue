@@ -131,8 +131,6 @@ const router = createRouter({
   },
 })
 router.beforeEach(async (to) => {
-  console.log("URL demandée :", to.fullPath);
-  console.log("Nom de la route :", to.name);
   if (to.name === 'category' || to.name === 'recipe') {
     try {
       let response

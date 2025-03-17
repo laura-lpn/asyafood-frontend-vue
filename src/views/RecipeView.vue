@@ -129,6 +129,8 @@ export default {
             const router = useRouter();
             const slug = router.currentRoute.value.params.slug;
             const category = router.currentRoute.value.params.category;
+            console.log(slug);
+            console.log(category);
             await getRecipe(slug);
             await getCategory(category);
         });
@@ -188,13 +190,15 @@ export default {
             return [];
         },
         formattedIngredients() {
-            return this.recipeStore.recipe.ingredients.map(ingredient => ({
-                name: ingredient.quantity * this.multiple > 1 ? ingredient.ingredient.namePlurial : ingredient.ingredient.name,
-                quantity: ingredient.quantity ? ingredient.quantity * this.multiple : null,
-                unit: ingredient.quantity * this.multiple > 1 ? ingredient.unit ? ingredient.unit.namePlurial : null : ingredient.unit ? ingredient.unit.name : null
-            }));
+            if (this.recipeStore.recipe.ingredients && Array.isArray(this.recipeStore.recipe.ingredients)) {
+                return this.recipeStore.recipe.ingredients.map(ingredient => ({
+                    name: ingredient.quantity * this.multiple > 1 ? ingredient.ingredient.namePlurial : ingredient.ingredient.name,
+                    quantity: ingredient.quantity ? ingredient.quantity * this.multiple : null,
+                    unit: ingredient.quantity * this.multiple > 1 ? ingredient.unit ? ingredient.unit.namePlurial : null : ingredient.unit ? ingredient.unit.name : null
+                }));
+            }
+            return [];
         },
     },
 };
-
 </script>
