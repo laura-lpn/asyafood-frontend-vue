@@ -139,7 +139,7 @@ export default {
     watch(() => route.params.slug, async (newSlug) => {
       currentPage.value = 1
       selectedFilters.value = { types: [], genres: [] }
-      if (newSlug) {
+      if (newSlug !== undefined) {
         await getCategory(newSlug)
       }
       nextTick(updateURL)
