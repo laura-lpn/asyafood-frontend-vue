@@ -81,15 +81,7 @@ export default {
     const recipesPerPage = 6
 
     const getCategory = async (slug) => {
-      try {
-        await categoryStore.getCategory(slug)
-      } catch (error) {
-        if (error.response && error.response.status === 404) {
-          router.push({ name: "NotFound" })
-        } else {
-          console.error("An error occurred:", error)
-        }
-      }
+      await categoryStore.getCategory(slug)
     }
 
     const updateURL = () => {
