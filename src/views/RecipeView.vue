@@ -125,9 +125,9 @@ export default {
             }
         }, { deep: true });
         
-        watch(() => router.currentRoute.value.params.recipeSlug,
+        watch(() => router.currentRoute.value.params.slug,
             async (newSlug) => {
-                const categorySlug = router.currentRoute.value.params.categorySlug;
+                const categorySlug = router.currentRoute.value.params.category;
                 
                 await getCategory(categorySlug);
                 await getRecipe(newSlug);
