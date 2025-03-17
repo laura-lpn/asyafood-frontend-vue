@@ -114,7 +114,7 @@ const router = createRouter({
       }
     },
     {
-      path: '/:catchAll(.*)', // Cette route attrape toutes les URL qui ne correspondent à aucune route précédente
+      path: '/:catchAll(.*)',
       component: NotFoundView,
       name: 'notFound',
       meta: {
@@ -130,7 +130,9 @@ const router = createRouter({
     }
   },
 })
-router.beforeEach(async (to, from) => {
+router.beforeEach(async (to) => {
+  console.log("URL demandée :", to.fullPath);
+  console.log("Nom de la route :", to.name);
   if (to.name === 'category' || to.name === 'recipe') {
     try {
       let response
