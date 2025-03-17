@@ -91,11 +91,11 @@ export default {
         const showMessageLogin = ref('');
         const router = useRouter();
 
-        const getRecipe = async (slug) => {
-            await recipeStore.getRecipe(slug);
+        const getRecipe = async (recipeSlug) => {
+            await recipeStore.getRecipe(recipeSlug);
         };
-        const getCategory = async (slug) => {
-            await categoryStore.getCategory(slug);
+        const getCategory = async (categorySlug) => {
+            await categoryStore.getCategory(categorySlug);
         };
         const modulo = ref(recipeStore.recipe.modulo || 1);
 
@@ -124,16 +124,13 @@ export default {
                 multiple.value = 1;
             }
         }, { deep: true });
-
         
-        watch(() => router.currentRoute.value.params.slug,
+        watch(() => router.currentRoute.value.params.recipeSlug,
             async (newSlug) => {
-                const category = router.currentRoute.value.params.category;
-                console.log('Recipe slug changed:', newSlug);
-                console.log('Category slug changed:', category);
+                const categorySlug = router.currentRoute.value.params.categorySlug;
                 
+                await getCategory(categorySlug);
                 await getRecipe(newSlug);
-                await getCategory(category);
             },
             { immediate: true }
         );

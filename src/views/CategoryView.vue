@@ -148,7 +148,6 @@ export default {
       currentPage.value = 1
       selectedFilters.value = { types: [], genres: [] }
       await getCategory(newSlug)
-
       nextTick(updateURL)
     }, { immediate: true })
 
