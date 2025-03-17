@@ -32,7 +32,7 @@ const router = createRouter({
       meta: {}
     },
     {
-      path: '/categorie/:category/:slug',
+      path: '/categorie/:category/:recipeSlug',
       component: RecipeView,
       name: 'recipe',
       meta: {}
@@ -137,7 +137,7 @@ router.beforeEach(async (to) => {
       if (to.name === 'category') {
         response = await fetch(`https://backend.asyafood.fr/api/category/${to.params.slug}`)
       } else if (to.name === 'recipe') {
-        response = await fetch(`https://backend.asyafood.fr/api/recipe/${to.params.slug}`)
+        response = await fetch(`https://backend.asyafood.fr/api/recipe/${to.params.recipeSlug}`)
       }
 
       if (!response.ok) {

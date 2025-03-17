@@ -1,7 +1,7 @@
 <template>
   <RouterLink :to="{
     name: 'recipe',
-    params: { category: category, slug: recipe }
+    params: { category: category, recipeSlug: recipe }
   }" class="rounded-mobile overflow-hidden shadow-main aspect-square relative group my-4">
     <img :src="image" :alt="altImage" class="w-full h-full bg-center bg-cover z-0 object-cover" />
     <div
