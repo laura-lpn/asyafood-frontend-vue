@@ -89,7 +89,6 @@ export default {
         const categoryStore = useCategoryStore();
         const showSuccessMessage = ref('');
         const showMessageLogin = ref('');
-        const router = useRouter();
 
         const getRecipe = async (recipeSlug) => {
             await recipeStore.getRecipe(recipeSlug);
@@ -124,16 +123,6 @@ export default {
                 multiple.value = 1;
             }
         }, { deep: true });
-        
-        watch(() => router.currentRoute.value.params.slug,
-            async (newSlug) => {
-                const categorySlug = router.currentRoute.value.params.category;
-                
-                await getCategory(categorySlug);
-                await getRecipe(newSlug);
-            },
-            { immediate: true }
-        );
 
         return {
             recipeStore,
@@ -200,5 +189,12 @@ export default {
             return [];
         },
     },
+    async created() {
+        const router = useRouter();
+        const slug = router.currentRoute.value.params.slug;
+        const category = router.currentRoute.value.params.category;
+        await this.getRecipe(slug);
+        await this.getCategory(category);
+    }
 };
 </script>
