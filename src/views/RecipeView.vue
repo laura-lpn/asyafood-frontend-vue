@@ -191,8 +191,7 @@ export default {
     },
     async created() {
         const router = useRouter();
-        const slug = router.currentRoute.value.params.slug;
-        const category = router.currentRoute.value.params.category;
+        const { slug, category } = router.currentRoute.value.params;
         await this.getRecipe(slug);
         await this.getCategory(category);
     }
