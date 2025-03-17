@@ -15,7 +15,7 @@
         <div v-for="item in list" class="flex items-center justify-between w-full mb-4 px-4" :key="item.id">
             <p :class="item.validate ? 'line-through' : null" class="lg:text-base text-left">
                 {{ item.quantity ? item.quantity : null }} 
-                {{ item.unit ? item.unit : null }} 
+                {{ getUnit(item) }}
                 {{ item.quantity > 1 ? item.ingredient.namePlurial : item.ingredient.name }}
             </p>
             <input type="checkbox" name="validate" @change="toggleValidation(item)" id="validate" :checked="item.validate" class="w-5 h-5 accent-yellow cursor-pointer">
@@ -39,6 +39,17 @@ export default {
     data() {
         return {
             list: {}
+        }
+    },
+    computed: {
+        getUnit() {
+            return (item) => {
+                if (!item.unit) return null;
+                if (item.quantity > 1 && item.unit !== 'ml' && item.unit !== 'g') {
+                    return item.unit.replace(/^(\w+)/, '$1s');
+                }
+                return item.unit;
+            };
         }
     },
     methods: {
