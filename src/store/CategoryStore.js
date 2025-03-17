@@ -9,7 +9,6 @@ export const useCategoryStore = defineStore({
   actions: {
     async getCategory(slug) {
       const router = useRouter()
-      console.log(slug)
 
       try {
         const response = await fetch(`https://backend.asyafood.fr/api/category/${slug}`)

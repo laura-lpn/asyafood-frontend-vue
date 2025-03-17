@@ -77,7 +77,7 @@
 </template>
 
 <script>
-import { ref, watch, onMounted } from 'vue';
+import { ref, watch} from 'vue';
 import { useRouter } from 'vue-router';
 import { useCategoryStore } from '../store/CategoryStore.js';
 import { useRecipeStore } from '../store/RecipeStore.js';
@@ -89,6 +89,7 @@ export default {
         const categoryStore = useCategoryStore();
         const showSuccessMessage = ref('');
         const showMessageLogin = ref('');
+        const router = useRouter();
 
         const getRecipe = async (slug) => {
             await recipeStore.getRecipe(slug);
@@ -125,15 +126,17 @@ export default {
         }, { deep: true });
 
         
-        onMounted(async () => {
-            const router = useRouter();
-            const slug = router.currentRoute.value.params.slug;
-            const category = router.currentRoute.value.params.category;
-            console.log(slug);
-            console.log(category);
-            await getRecipe(slug);
-            await getCategory(category);
-        });
+        watch(() => router.currentRoute.value.params.slug,
+            async (newSlug) => {
+                const category = router.currentRoute.value.params.category;
+                console.log('Recipe slug changed:', newSlug);
+                console.log('Category slug changed:', category);
+                
+                await getRecipe(newSlug);
+                await getCategory(category);
+            },
+            { immediate: true }
+        );
 
         return {
             recipeStore,
