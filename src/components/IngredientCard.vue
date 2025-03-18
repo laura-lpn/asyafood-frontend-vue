@@ -1,8 +1,8 @@
 <template>
-  <div class="rounded-input overflow-hidden shadow-main h-56 relative">
+  <div class="rounded-input overflow-hidden shadow-main h-44 md:h-60 relative">
     <img :src="image" :alt="altImage" class="w-full h-full bg-center bg-cover z-0 object-cover" />
     <div
-      class="absolute h-1/3 md:h-1/4 leading-5 bg-transparent-title w-full z-10 bottom-0 py-1 md:py-2 px-2 md:px-3 lg:px-4">
+      class="absolute h-1/3 lg:h-1/4 leading-5 bg-transparent-title w-full z-10 bottom-0 py-1 md:py-2 px-2 md:px-3 lg:px-4">
       <h3 class="text-white flex items-center text-sm leading-5 lg:leading-7 text-medium w-full h-full overflow-y-clip md:text-base lg:text-xl">
         {{ cleanName }}
       </h3>
