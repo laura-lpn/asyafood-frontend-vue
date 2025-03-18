@@ -6,6 +6,9 @@
   <section
       class="flex items-center flex-col justify-center text-center my-8 m-auto w-11/12 shadow-main rounded-mobile py-8 px-6 md:w-4/5 lg:w-3/5 xl:w-1/2">
     <template v-if="ingredients.length > 0">
+      <p>{{ 
+        ingredients.length > 1 ? 'Il y a ' + ingredients.length + ' ingrédients' : 'Il y a ' + ingredients.length + ' ingrédient'
+         }}</p>
       <IngredientCard
         v-for="ingredient in ingredients"
         :key="ingredient.id"
