@@ -102,17 +102,11 @@ export default {
 
         const incrementModulo = () => {
             multiple.value++;
-            console.log('multiple :', multiple.value);
-            modulo.value = recipeStore.recipe.modulo * multiple.value;
-            console.log('modulo :', modulo.value);
         };
 
         const decrementModulo = () => {
             if (multiple.value > 1) {
                 multiple.value--;
-                console.log('multiple :', multiple.value);
-                modulo.value = recipeStore.recipe.modulo * multiple.value;
-                console.log('modulo :', modulo.value);
             }
         };
 
@@ -123,12 +117,8 @@ export default {
         watch(() => recipeStore.recipe, (newRecipe) => {
             if (newRecipe?.unitModulo === "personnes") {
                 multiple.value = 4;
-                console.log('multiple :', multiple.value);
-                console.log('modulo :', modulo.value);
             } else {
                 multiple.value = 1;
-                console.log('multiple :', multiple.value);
-                console.log('modulo :', modulo.value);
             }
         }, { deep: true });
 
