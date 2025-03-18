@@ -43,7 +43,7 @@ export default {
     };
     return { ingredients, getIngredients };
   },
-  async created() {
+  async onMounted() {
     await this.getIngredients();
   }
 }
