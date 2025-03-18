@@ -3,7 +3,7 @@
   </section>
   <MotifTitle text="Ingrédients" />
   
-  <section class="w-11/12 mx-auto my-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:w-4/5 gap-4 md:gap-12 lg:gap-20">
+  <section class="w-11/12 mx-auto my-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:w-4/5 gap-4 md:gap-12">
     <template v-if="ingredients.length > 0">
       <IngredientCard
         v-for="ingredient in ingredients"
