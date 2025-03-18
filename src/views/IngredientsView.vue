@@ -3,12 +3,8 @@
   </section>
   <MotifTitle text="Ingrédients" />
   
-  <section
-      class="flex items-center flex-col justify-center text-center my-8 m-auto w-11/12 shadow-main rounded-mobile py-8 px-6 md:w-4/5 lg:w-3/5 xl:w-1/2">
+  <section class="w-11/12 mx-auto my-12 grid grid-cols-2 md:grid-cols-3 md:w-4/5 gap-6 md:gap-26 xl:gap-y-20 xl:gap-32">
     <template v-if="ingredients.length > 0">
-      <p>{{ 
-        ingredients.length > 1 ? 'Il y a ' + ingredients.length + ' ingrédients' : 'Il y a ' + ingredients.length + ' ingrédient'
-         }}</p>
       <IngredientCard
         v-for="ingredient in ingredients"
         :key="ingredient.id"
