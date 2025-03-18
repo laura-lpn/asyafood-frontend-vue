@@ -12,10 +12,9 @@
       Site Web : asyafood.fr<br />
     </p>
     <h2 class="text-lg font-semibold my-4">Hébergement</h2>
-    <p class="md:text-base mx-4 md:mx-8 my-2">
-      Le Site est hébergé par la société PlanetHoster, situé 4416 Louis-B.-Mayer Laval, Québec
-      Canada H7P 0G1, (contact téléphonique ou email : (+1) 855 774 4678).
-    </p>
+    <p class="md:text-base mx-4 md:mx-8 my-2">Le Site est hébergé par : <br>
+        Hostinger, dont le siège social est situé à Kaunas, Lituanie (<a href="https://www.hostinger.fr/contact" class="text-red underline">contact</a>).
+      </p>
     <h2 class="text-lg font-semibold my-4">Développement</h2>
     <p class="md:text-base mx-4 md:mx-8 my-2">
       Laura Lepannetier<br />
@@ -128,7 +127,7 @@
       <a
         href="https://unsplash.com/fr/@cattdio?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
         target="_blank"
-        >catherine dionne</a
+        >Catherine Dionne</a
       >
       sur
       <a
