@@ -11,6 +11,10 @@
         <img src="/logo.svg" alt="logo Asya Food" class="h-16 lg:h-20" />
       </RouterLink>
       <nav class="absolute left-7 text-xl flex gap-5 lg:right-0 lg:left-auto">
+        <RouterLink :to="{name : 'ingredients'}" title="Ingrédients"
+          class="text-yellow lg:text-red hover:text-yellow">
+          <font-awesome-icon :icon="['far', 'pepper-hot']" />
+        </RouterLink>
         <RouterLink :to="{name : 'list'}" title="Liste de course"
           class="text-yellow lg:text-red hover:text-yellow">
           <font-awesome-icon :icon="['fas', 'list-check']" />
