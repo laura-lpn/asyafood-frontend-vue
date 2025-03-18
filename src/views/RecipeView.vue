@@ -115,7 +115,7 @@ export default {
         });
 
         watch(() => recipeStore.recipe, (newRecipe) => {
-            if (newRecipe?.unitModulo === "personnes") {
+            if (newRecipe?.unitModulo === "personnes" && newRecipe?.modulo === 1) {
                 multiple.value = 4;
             } else {
                 multiple.value = 1;
