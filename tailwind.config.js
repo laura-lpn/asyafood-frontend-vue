@@ -60,6 +60,7 @@ module.exports = {
         'notFound': "url('/img/not-found-asya-food.jpg')",
         'forgotPassword': "url('/img/forgot-password-asya-food.jpg')",
         'resetPassword': "url('/img/reset-password-asya-food.jpg')",
+        'ingredients': "url('/img/ingredients-asya-food.jpg')",
       },
       height: {
         'section-img': '90vh',

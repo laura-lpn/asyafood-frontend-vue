@@ -137,6 +137,8 @@
         >Unsplash</a
       >
       (réinitialisation mot de passe)<br />
+      Photo de <a href="https://unsplash.com/fr/@jangus231?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Joshua Ang</a> sur <a href="https://unsplash.com/fr/photos/deux-temples-eclaires-k86Q90P9q9o?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+      (ingredients)<br />
     </p>
   </section>
 </template>

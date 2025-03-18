@@ -16,6 +16,7 @@ import Pagination from './components/Pagination.vue'
 import RecipeCard from './components/RecipeCard.vue'
 import CategoryCard from './components/CategoryCard.vue'
 import RecipeCardHome from './components/RecipeCardHome.vue'
+import IngredientCard from './components/IngredientCard.vue'
 
 import './assets/main.css'
 
@@ -76,6 +77,7 @@ const app = createApp(App)
   .component('RecipeCard', RecipeCard)
   .component('CategoryCard', CategoryCard)
   .component('RecipeCardHome', RecipeCardHome)
+  .component('IngredientCard', IngredientCard)
 
 app.use(router)
 app.use(pinia)

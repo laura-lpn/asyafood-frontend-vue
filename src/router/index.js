@@ -12,6 +12,7 @@ import ForgotPasswordView from '../views/ForgotPasswordView.vue'
 import ChangePasswordView from '../views/ChangePasswordView.vue'
 import NotFoundView from '../views/NotFoundView.vue'
 import CguView from '../views/CguView.vue'
+import IngredientsView from '../views/IngredientsView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -36,6 +37,15 @@ const router = createRouter({
       component: RecipeView,
       name: 'recipe',
       meta: {}
+    },
+    {
+      path: '/ingredients',
+      component: IngredientsView,
+      name: 'ingredients',
+      meta: {
+        title: 'Ingrédients',
+        description: "Découvrez les ingrédients utilisés dans les recettes asiatiques."
+      }
     },
     {
       path: '/connexion',
