@@ -15,33 +15,31 @@
       />
     </template>
     <template v-else>
-      <p class="text-center col-span-3">Aucun ingrédient trouvé.</p>
+      <p class="text-center col-span-3">Aucun ingrédient trouvé</p>
     </template>
   </section>
 </template>
 
 <script>
-
+import { ref } from 'vue'
 
 export default {
   name: "IngredientsView",
-  data() {
-    return {
-      ingredients: []
-    }
-  },
-  methods: {
-    async getIngredients() {
+  setup() {
+    const ingredients = ref([]);
+
+    const getIngredients = async () => {
       const response = await fetch('https://backend.asyafood.fr/api/ingredients', {
-      method: 'GET',
-      credentials: 'include'
-    });
-    const ingredients = await response.json();
-    this.ingredients = ingredients;
-    },
-    async beforeMount() {
-      await this.getIngredients()
-    }
+        method: 'GET',
+        credentials: 'include'
+      });
+      const ingredients = await response.json();
+      ingredients.value = ingredients;
+    };
+    return { ingredients, getIngredients };
+  },
+  async created() {
+    await this.getIngredients();
   }
 }
 </script>
