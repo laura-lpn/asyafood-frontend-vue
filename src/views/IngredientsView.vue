@@ -33,7 +33,9 @@ export default {
         method: 'GET',
         credentials: 'include'
       });
+      console.log(response);
       const ingredients = await response.json();
+      console.log(ingredients);
       ingredients.value = ingredients;
     };
     return { ingredients, getIngredients };
