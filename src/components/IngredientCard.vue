@@ -1,5 +1,5 @@
 <template>
-  <div class="rounded-input overflow-hidden shadow-main h-44 md:h-60 xl:h-68 relative">
+  <div class="rounded-input overflow-hidden shadow-main h-44 md:h-60 xl:h-72 relative">
     <img :src="image" :alt="altImage" class="w-full h-full bg-center bg-cover z-0 object-cover" />
     <div
       class="absolute h-1/3 lg:h-1/4 leading-5 bg-transparent-title w-full z-10 bottom-0 py-1 md:py-2 px-2 md:px-3 lg:px-4">
