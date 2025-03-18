@@ -24,14 +24,15 @@
 </template>
 
 <script>
-import { ref } from 'vue'
-
 export default {
   name: "IngredientsView",
-  setup() {
-    const ingredients = ref([]);
-
-    const getIngredients = async () => {
+  data() {
+    return {
+      ingredients: []
+    }
+  },
+  methods: {
+    async getIngredients() {
       const response = await fetch('https://backend.asyafood.fr/api/ingredients', {
         method: 'GET',
         credentials: 'include'
@@ -39,11 +40,10 @@ export default {
       console.log(response);
       const ingredients = await response.json();
       console.log(ingredients);
-      ingredients.value = ingredients;
-    };
-    return { ingredients, getIngredients };
+      this.ingredients = ingredients;
+    }
   },
-  async onMounted() {
+  async mounted() {
     await this.getIngredients();
   }
 }
