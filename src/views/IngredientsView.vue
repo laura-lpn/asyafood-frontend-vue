@@ -14,7 +14,7 @@
       />
     </template>
     <template v-else>
-      <p class="text-center col-span-3">Aucun ingrédient trouvé</p>
+      <p class="text-center col-span-4">Aucun ingrédient trouvé</p>
     </template>
   </section>
 </template>
