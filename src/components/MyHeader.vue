@@ -13,7 +13,7 @@
       <nav class="absolute left-7 text-xl flex gap-5 lg:right-0 lg:left-auto">
         <RouterLink :to="{name : 'ingredients'}" title="Ingrédients"
           class="text-yellow lg:text-red hover:text-yellow">
-          <font-awesome-icon :icon="['far', 'pepper-hot']" />
+          <font-awesome-icon :icon="['fas', 'pepper-hot']" />
         </RouterLink>
         <RouterLink :to="{name : 'list'}" title="Liste de course"
           class="text-yellow lg:text-red hover:text-yellow">
