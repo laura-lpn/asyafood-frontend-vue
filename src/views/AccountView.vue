@@ -194,7 +194,7 @@ export default {
     async logout() {
       const response = await fetch('https://backend.asyafood.fr/api/logout')
       if (response.ok) {
-        this.$router.push({ name: 'login' })
+        this.$router.push({ name: 'home' })
       }
     },
     async confirmAccountDeletion() {
