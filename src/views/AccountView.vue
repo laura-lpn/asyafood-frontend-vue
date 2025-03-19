@@ -197,6 +197,7 @@ export default {
         credentials: 'include'
       })
       if (response.ok) {
+        console.log('Déconnexion réussie');
         this.$router.push({ name: 'home' })
       }
     },
