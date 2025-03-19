@@ -192,7 +192,10 @@ export default {
       }
     },
     async logout() {
-      const response = await fetch('https://backend.asyafood.fr/api/logout')
+      const response = await fetch('https://backend.asyafood.fr/api/logout', {
+        method: 'GET',
+        credentials: 'include'
+      })
       if (response.ok) {
         this.$router.push({ name: 'home' })
       }
