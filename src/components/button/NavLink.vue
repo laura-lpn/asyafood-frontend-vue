@@ -33,7 +33,7 @@ export default {
     class="font-medium
     relative duration-500 block
     hover:text-red
-    after:absolute after:content-[''] after:top-full after:h-0.5 after:w-full after:left-0 after:bg-red after:rounded-full after:origin-right after:scale-x-0 after:transition-transform after:duration-500
+    after:absolute after:content-[''] after:top-full after:h-0.5 after:w-full after:left-0 after:bg-red after:rounded-main after:origin-right after:scale-x-0 after:transition-transform after:duration-500
     hover:after:origin-left hover:after:scale-x-100
     ">{{text}}</router-link>
 </template>
