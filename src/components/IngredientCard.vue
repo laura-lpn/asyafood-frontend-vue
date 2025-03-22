@@ -30,7 +30,7 @@ export default {
   },
   computed: {
     cleanName() {
-      return this.name.replace(/^(d'|de\s)/i, '').replace(/(voir recette)/i, '');
+      return this.name.replace(/^(d'|de\s)/i, '').replace(/\(.*?voir recette.*?\)/i, '');
     }
   }
 }
