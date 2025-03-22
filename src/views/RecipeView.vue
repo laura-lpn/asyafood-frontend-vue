@@ -33,8 +33,9 @@
                 class="border-2 flex items-center justify-center border-black w-6 h-6 aspect-square rounded-[8px] hover:bg-yellow hover:text-white hover:border-yellow">
                 <font-awesome-icon :icon="['fas', 'minus']" />
             </button>
-            <span class="font-medium text-base md:text-lg xl:text-xl">Pour {{ modulo * multiple }} {{ recipeStore.recipe.unitModulo
-            }}</span>
+            <span class="font-medium text-base md:text-lg xl:text-xl">
+                Pour {{ modulo * multiple }} {{ formattedUnitModulo }}
+            </span>
             <button @click="incrementModulo"
                 class="border-2 flex items-center justify-center border-black w-6 h-6 aspect-square rounded-[8px] hover:bg-yellow hover:text-white hover:border-yellow">
                 <font-awesome-icon :icon="['fas', 'plus']" />
@@ -185,6 +186,15 @@ export default {
                 }));
             }
             return [];
+        },
+        formattedUnitModulo()  {
+            const unit = this.recipeStore.recipe.unitModulo || '';
+            const quantity = this.modulo * this.multiple;
+
+            if (quantity === 1 && unit.endsWith('s')) {
+                return unit.slice(0, -1);
+            }
+            return unit;
         },
     },
     async created() {
