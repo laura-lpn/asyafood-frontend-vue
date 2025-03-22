@@ -197,7 +197,6 @@ export default {
         credentials: 'include'
       })
       if (response.ok) {
-        console.log('Déconnexion réussie');
         this.$router.push({ name: 'home' })
       }
     },
@@ -231,17 +230,18 @@ export default {
     });
     if (!tokenResponse.status === 200) {
       this.$router.push({ name: 'login' })
-    }
-    const response = await fetch('https://backend.asyafood.fr/api/profil', {
-      method: 'GET',
-      credentials: 'include'
-    });
-    if (response.ok) {
-      const user = await response.json()
-      this.user = user
-    } else {
-      this.$router.push({ name: 'login' })
-    }
+    }else {
+      const response = await fetch('https://backend.asyafood.fr/api/profil', {
+        method: 'GET',
+        credentials: 'include'
+      });
+      if (response.ok) {
+        const user = await response.json()
+        this.user = user
+      } else {
+        this.$router.push({ name: 'login' })
+      }
+    }    
   }
 }
 </script>
