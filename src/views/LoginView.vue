@@ -4,6 +4,9 @@
   <MotifTitle text="Se connecter" />
   <section
     class="flex items-center flex-col justify-center text-center my-8 m-auto w-11/12 shadow-main rounded-mobile py-8 px-6 md:w-4/5 lg:w-3/5 xl:w-1/2">
+    <p v-if="nextRoute === '/profil/liste'" class="text-lg mb-4">
+      Vous devez être connecté pour accéder à votre liste de courses.
+    </p>
     <form v-on:submit.prevent="login()" class="w-4/5 flex flex-col my-5 md:w-3/5">
       <div v-if="error" class="text-red font-bold py-2 px-4">
         <p>{{ error }}</p>
@@ -39,7 +42,8 @@ export default {
       email: '',
       password: '',
       error: '',
-      isLoading: false
+      isLoading: false,
+      nextRoute: this.$route.query.next || ''
     }
   },
   setup() {
