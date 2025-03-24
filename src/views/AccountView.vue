@@ -224,24 +224,30 @@ export default {
     }
   },
   async mounted() {
-    const tokenResponse = await fetch('https://backend.asyafood.fr/api/check-token', {
-      method: 'GET',
-      credentials: 'include'
-    });
-    if (!tokenResponse.status === 200) {
-      this.$router.push({ name: 'login' })
-    }else {
-      const response = await fetch('https://backend.asyafood.fr/api/profil', {
+    try {
+      // Vérifier le token
+      const tokenResponse = await fetch('https://backend.asyafood.fr/api/check-token', {
         method: 'GET',
         credentials: 'include'
       });
-      if (response.ok) {
-        const user = await response.json()
-        this.user = user
-      } else {
-        this.$router.push({ name: 'login' })
+      if (!tokenResponse.ok) {
+        this.$router.push({ name: 'login' });
+        return;
       }
-    }    
+      const response = await fetch('https://backend.asyafood.fr/api/profil', {
+        method: 'GET',
+        credentials: 'include'  
+      });
+      if (response.ok) {
+        const user = await response.json();
+        this.user = user;
+      } else {
+        this.$router.push({ name: 'login' });
+      }
+    } catch (error) {
+      console.error('Erreur lors de la vérification du token ou de la récupération du profil :', error);
+      this.$router.push({ name: 'login' });
+    }
   }
 }
 </script>
