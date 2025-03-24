@@ -49,19 +49,19 @@
     </section>
     <section class="w-4/5 py-6 px-5 md:px-16 lg:px-48 text-center mx-auto">
         <MotifTitleSection text="Ajoutez vos ingrédients à votre liste de courses" color="yellow" />
-        <p class="text-lg md:text-xl mb-8">
+        <p class="text-lg md:text-xl mb-10">
             Créez un compte pour pouvoir ajouter tous les ingrédients d'une recette à votre liste de courses et y accéder à tout moment.
         </p>
-        <RouterLink to="/inscription" class="bg-red rounded-main py-2 text-white hover:bg-yellow mt-3 px-4">
+        <RouterLink to="/inscription" class="bg-red rounded-main py-2 text-white hover:bg-yellow px-8">
             Créer un compte
         </RouterLink>
     </section>
     <section class="w-4/5 py-6 px-5 md:px-16 lg:px-48 text-center mx-auto">
         <MotifTitleSection text="Ingrédients asiatiques incontournables" color="red" />
-        <p class="text-lg md:text-xl mb-8">
+        <p class="text-lg md:text-xl mb-10">
             Découvrez les ingrédients indispensables pour cuisiner des plats asiatiques authentiques.
         </p>
-        <RouterLink to="/ingredients" class="bg-red rounded-main py-2 text-white hover:bg-yellow mt-3 px-4">
+        <RouterLink to="/ingredients" class="bg-red rounded-main py-2 text-white hover:bg-yellow px-8">
             Voir les ingrédients
         </RouterLink>
     </section>
