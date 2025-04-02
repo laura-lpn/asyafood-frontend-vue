@@ -4,7 +4,7 @@
             <h1 class="text-2xl font-second font-bold w-full leading-xl mb-6 lg:mt-3 md:text-4xl md:mb-8 md:leading-3xl lg:text-4xl lg:leading-3xl xl:text-4xl xl:leading-5xl xl:w-4/5">
                 Découvrez les saveurs de la cuisine <em class="text-red not-italic font-bold">asiatique</em>
             </h1>
-            <p class="w-full font-medium text-base leading-xl md:text-xl lg:text-lg xl:text-xl md:leading-2xl md:mb-2 xl:w-4/5">
+            <p class="w-full font-medium text-base leading-xl md:text-xl lg:text-lg xl:text-xl md:leading-2xl md:mb-2">
                 De la cuisine <em class="text-red not-italic font-medium">japonaise</em> à la cuisine 
                 <em class="text-red not-italic font-medium">thaïlandaise</em> en passant par la cuisine 
                 <em class="text-red not-italic font-medium">chinoise</em>, vous trouverez ici des recettes simples à 
