@@ -1,6 +1,6 @@
 <template>
-    <section class="bg-home h-section-img-mobile md:h-section-img w-full lg:h-screen bg-center bg-cover bg-no-repeat">
-        <div class="w-full h-full bg-filter-home flex flex-col items-center justify-end text-center px-5 md:px-16 lg:px-24 xl:px-48">
+    <section class="bg-home h-hull w-full bg-center bg-cover bg-no-repeat">
+        <div class="w-full h-full bg-filter-home flex flex-col items-center pt-8 pb-2 justify-end text-center px-5 md:px-16 lg:px-24 xl:px-48">
             <h1 class="text-2xl font-second font-bold w-full leading-xl mb-6 lg:mt-3 md:text-4xl md:mb-8 md:leading-3xl lg:text-4xl lg:leading-3xl xl:text-4xl xl:leading-5xl xl:w-4/5">
                 Découvrez les saveurs de la cuisine <em class="text-red not-italic font-bold">asiatique</em>
             </h1>
