@@ -63,11 +63,11 @@ module.exports = {
         'ingredients': "url('/img/ingredients-asya-food.jpg')",
       },
       height: {
-        'section-img': '90vh',
-        'section-img-xl': '75vh',
-        'section-img-mobile': '90vh',
-        'category-img' : '65vh',
-        'category-img-mobile' : '50vh',
+        'section-img': '75vh',
+        'section-img-xl': '65vh',
+        'section-img-mobile': '80vh',
+        'category-img' : '55vh',
+        'category-img-mobile' : '40vh',
       },
       lineHeight: {
         'large' : '1.8rem',
