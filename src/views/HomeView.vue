@@ -1,10 +1,10 @@
 <template>
     <section class="bg-home h-section-img-mobile md:h-section-img w-full bg-center lg:h-screen bg-cover bg-no-repeat">
-        <div class="w-full h-full bg-filter-home flex flex-col items-center justify-end text-center px-5 md:px-16 lg:px-48">
-            <h1 class="text-2xl font-second font-bold w-full leading-xl mb-3 lg:mt-4 md:text-4xl md:mb-12 md:leading-3xl lg:text-3xl lg:leading-4xl xl:text-5xl xl:leading-6xl xl:w-4/5">
+        <div class="w-full h-full bg-filter-home flex flex-col items-center justify-end text-center px-5 md:px-16 lg:px-24 xl:px-48">
+            <h1 class="text-2xl font-second font-bold w-full leading-xl mb-3 lg:mt-4 md:text-4xl md:mb-12 md:leading-3xl lg:text-3xl lg:leading-2xl xl:text-5xl xl:leading-6xl xl:w-4/5">
                 Découvrez les saveurs de la cuisine <em class="text-red not-italic font-bold">asiatique</em>
             </h1>
-            <p class="w-full font-medium text-base leading-xl md:text-xl md:leading-2xl md:mb-2 xl:w-4/5">
+            <p class="w-full font-medium text-base leading-xl md:text-xl lg:text-lg xl:text-xl md:leading-2xl md:mb-2 xl:w-4/5">
                 De la cuisine <em class="text-red not-italic font-medium">japonaise</em> à la cuisine 
                 <em class="text-red not-italic font-medium">thaïlandaise</em> en passant par la cuisine 
                 <em class="text-red not-italic font-medium">chinoise</em>, vous trouverez ici des recettes simples à 
