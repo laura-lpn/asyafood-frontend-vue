@@ -3,7 +3,7 @@
     class="
     bg-white lg:bg-white-transparent shadow-main
     py-3 lg:px-20
-    w-full z-[100] h-auto fixed
+    w-full h-auto fixed
     flex justify-center items-center flex-col
     ">
     <div class="relative flex justify-center items-center w-full">
