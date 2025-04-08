@@ -2,10 +2,10 @@
   <RouterLink :to="{
     name: 'recipe',
     params: { category: category, recipeSlug: recipe }
-  }" class="rounded-mobile overflow-hidden shadow-main aspect-square relative group my-4">
+  }" class="rounded-mobile overflow-hidden shadow-main aspect-square relative my-4">
     <img :src="image" :alt="altImage" class="w-full h-full bg-center bg-cover z-0 object-cover" />
     <div
-      class="absolute h-1/4 bg-transparent-title w-full z-10 bottom-0 py-1 px-4 lg:translate-y-full transition-all duration-300 ease-in-out lg:group-hover:translate-y-0">
+      class="absolute h-1/4 bg-transparent-title w-full z-10 bottom-0 py-1 px-4">
       <h3 class="text-white flex items-center text-xl leading-7 text-medium w-full h-full overflow-y-clip md:text-base lg:text-xl">
         {{ name }}
       </h3>
