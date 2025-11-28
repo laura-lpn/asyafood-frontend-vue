@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     async getIngredients() {
-      const response = await fetch('https://backend.asyafood.fr/api/ingredients', {
+      const response = await fetch('https://backend-asyafood.lauralpn.fr/api/ingredients', {
         method: 'GET',
         credentials: 'include'
       });

@@ -121,7 +121,7 @@ export default {
     },
     async updateEmail() {
       try {
-        const response = await fetch('https://backend.asyafood.fr/api/profil/edit-email', {
+        const response = await fetch('https://backend-asyafood.lauralpn.fr/api/profil/edit-email', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -144,7 +144,7 @@ export default {
     },
     async updateUsername() {
       try {
-        const response = await fetch('https://backend.asyafood.fr/api/profil/edit_username', {
+        const response = await fetch('https://backend-asyafood.lauralpn.fr/api/profil/edit_username', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -171,7 +171,7 @@ export default {
       }
 
       try {
-        const response = await fetch('https://backend.asyafood.fr/api/profil/edit-password', {
+        const response = await fetch('https://backend-asyafood.lauralpn.fr/api/profil/edit-password', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -192,7 +192,7 @@ export default {
       }
     },
     async logout() {
-      const response = await fetch('https://backend.asyafood.fr/api/logout', {
+      const response = await fetch('https://backend-asyafood.lauralpn.fr/api/logout', {
         method: 'GET',
         credentials: 'include'
       })
@@ -202,7 +202,7 @@ export default {
     },
     async confirmAccountDeletion() {
       try {
-        const response = await fetch('https://backend.asyafood.fr/api/profil/delete', {
+        const response = await fetch('https://backend-asyafood.lauralpn.fr/api/profil/delete', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -226,7 +226,7 @@ export default {
   async mounted() {
     try {
       // Vérifier le token
-      const tokenResponse = await fetch('https://backend.asyafood.fr/api/check-token', {
+      const tokenResponse = await fetch('https://backend-asyafood.lauralpn.fr/api/check-token', {
         method: 'GET',
         credentials: 'include'
       });
@@ -234,7 +234,7 @@ export default {
         this.$router.push({ name: 'login' });
         return;
       }
-      const response = await fetch('https://backend.asyafood.fr/api/profil', {
+      const response = await fetch('https://backend-asyafood.lauralpn.fr/api/profil', {
         method: 'GET',
         credentials: 'include'  
       });

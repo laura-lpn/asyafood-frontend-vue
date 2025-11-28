@@ -46,7 +46,7 @@ export default {
         };
         const toggleValidation = async (item) => {
             try {
-                const response = await fetch(`https://backend.asyafood.fr/api/list/validate/${item.id}`, {
+                const response = await fetch(`https://backend-asyafood.lauralpn.fr/api/list/validate/${item.id}`, {
                     method: "POST",
                     credentials: "include",
                 });
@@ -62,7 +62,7 @@ export default {
         };
         const clearList = async () => {
             try {
-                const response = await fetch(`https://backend.asyafood.fr/api/list/clear`, {
+                const response = await fetch(`https://backend-asyafood.lauralpn.fr/api/list/clear`, {
                     method: "POST",
                     credentials: "include",
                 });
@@ -78,7 +78,7 @@ export default {
         };
         onMounted(async () => {
             try {
-                const response = await fetch("https://backend.asyafood.fr/api/list", {
+                const response = await fetch("https://backend-asyafood.lauralpn.fr/api/list", {
                     method: "GET",
                     credentials: "include",
                 });

@@ -41,7 +41,7 @@ export default {
       formData.append('email', this.email);
 
       try {
-        const response = await fetch('https://backend.asyafood.fr/api/forgot-password', {
+        const response = await fetch('https://backend-asyafood.lauralpn.fr/api/forgot-password', {
           method: 'POST',
           body: formData,
           credentials: 'include',
