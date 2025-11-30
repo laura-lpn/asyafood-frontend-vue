@@ -42,23 +42,23 @@ Ce projet correspond à la **version Bachelor**, utilisant un **front Vue 3** co
 
 ---
 
-## 🖼️ Aperçu du projet
+## Aperçu du projet
 
 ### Accueil
-![Accueil](public/screenshots/home.png)
+<img src="public/screenshots/home.png" width="40%">
 
 ### Catégorie
-![Catégorie](public/screenshots/category.png)
+<img src="public/screenshots/category.png" width="40%">
 
 ### Recette
-![Recette](public/screenshots/recipe.png)
+<img src="public/screenshots/recipe.png" width="40%">
 
 ### Liste de courses
-![Liste de courses](public/screenshots/list.png)
+<img src="public/screenshots/list.png" width="40%">
 
 ---
 
-## 🛠️ Technologies
+## Technologies
 
 - Vue 3 (Composition API)  
 - Vue Router  
@@ -69,5 +69,8 @@ Ce projet correspond à la **version Bachelor**, utilisant un **front Vue 3** co
 
 ---
 
-## 📁 Structure du projet
+ ## Auteure
+ 👩‍💻 Laura Lepannetier
+Projet réalisé dans le cadre du Bachelor Développement Web.
 
+[GitHub](https://github.com/laura-lpn)
