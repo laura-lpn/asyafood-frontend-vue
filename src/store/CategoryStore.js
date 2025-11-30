@@ -11,7 +11,7 @@ export const useCategoryStore = defineStore({
       const router = useRouter()
 
       try {
-        const response = await fetch(`https://backend-asyafood.lauralpn.fr/api/category/${slug}`)
+        const response = await fetch(`https://backend.asyafood.lauralpn.fr/api/category/${slug}`)
         if (response.status === 404) {
           router.push({ name: 'notFound', params: {catchAll: '404'} })
         } else {

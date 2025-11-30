@@ -153,7 +153,7 @@ export default {
   },
   methods: {
     async getCategories() {
-      const response = await fetch('https://backend-asyafood.lauralpn.fr/api/categories')
+      const response = await fetch('https://backend.asyafood.lauralpn.fr/api/categories')
       const categories = await response.json()
       this.categories = categories
     }

@@ -150,7 +150,7 @@ export default {
             }));
 
             try {
-                const response = await fetch('https://backend-asyafood.lauralpn.fr/api/list/add', {
+                const response = await fetch('https://backend.asyafood.lauralpn.fr/api/list/add', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

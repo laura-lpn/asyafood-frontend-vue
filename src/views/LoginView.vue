@@ -47,7 +47,7 @@ export default {
     }
   },
   setup() {
-    const tokenResponse = fetch('https://backend-asyafood.lauralpn.fr/api/check-token', {
+    const tokenResponse = fetch('https://backend.asyafood.lauralpn.fr/api/check-token', {
       method: 'GET',
       credentials: 'include'
     });
@@ -67,7 +67,7 @@ export default {
       this.isLoading = true
       this.error = ''
 
-      const response = await fetch('https://backend-asyafood.lauralpn.fr/api/login', {
+      const response = await fetch('https://backend.asyafood.lauralpn.fr/api/login', {
         method: 'POST',
         credentials: 'include',
         headers: {

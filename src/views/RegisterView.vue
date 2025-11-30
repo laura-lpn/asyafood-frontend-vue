@@ -100,7 +100,7 @@ export default {
         this.error = 'Please enter a username.'
         return
       }
-      const response = await fetch('https://backend-asyafood.lauralpn.fr/api/register', {
+      const response = await fetch('https://backend.asyafood.lauralpn.fr/api/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

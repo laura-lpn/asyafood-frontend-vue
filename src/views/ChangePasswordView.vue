@@ -62,7 +62,7 @@ export default {
   async beforeMount() {
     const token = this.$route.params.token
     try {
-      const response = await fetch(`https://backend-asyafood.lauralpn.fr/api/reset/${token}`, {
+      const response = await fetch(`https://backend.asyafood.lauralpn.fr/api/reset/${token}`, {
         method: 'GET',        
         credentials: 'include',
       })
@@ -82,7 +82,7 @@ export default {
       this.isLoading = true
       this.successMessage = ''
       try {
-        const response = await fetch(`https://backend-asyafood.lauralpn.fr/api/change-password/${token}`, {
+        const response = await fetch(`https://backend.asyafood.lauralpn.fr/api/change-password/${token}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
