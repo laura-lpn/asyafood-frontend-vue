@@ -1,4 +1,4 @@
-# Asya Food
+# Asya Food - Frontend
 
 <img src="public/logo.svg" width="100">
 
@@ -63,7 +63,7 @@ Ce projet correspond à la **version Bachelor**, utilisant un **front Vue 3** co
 - Vue 3 (Composition API)  
 - Vue Router  
 - TailwindCSS
-- Docker  
+- Docker + Caddy
 - Backend : **Symfony 6.3**  
   → Repo : https://github.com/laura-lpn/asyafood-backend-production-bachelor-public
 
